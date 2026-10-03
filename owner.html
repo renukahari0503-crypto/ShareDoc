@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop Owner Dashboard - Customer Print Portal</title>
+  <title>Owner Desktop Dashboard - Customer Print Portal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,6 +19,7 @@
       --slate-200: #E2E8F0;
       --slate-300: #CBD5E1;
       --slate-400: #94A3B8;
+      --slate-500: #64748B;
       --slate-600: #475569;
       --slate-700: #334155;
       --slate-800: #1E293B;
@@ -26,170 +27,810 @@
       --whatsapp-green: #25D366;
       --amber-warning: #D97706;
       --emerald-success: #059669;
+      --rose-danger: #E11D48;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-    body { background-color: var(--slate-100); color: var(--slate-900); min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 95px; }
-    header { background-color: var(--navy-primary); color: white; padding: 14px 20px; box-shadow: 0 4px 14px rgba(10, 25, 47, 0.2); position: sticky; top: 0; z-index: 100; }
-    .header-content { max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .logo-area { display: flex; align-items: center; gap: 12px; }
-    .logo-icon { width: 42px; height: 42px; background: var(--navy-dark); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--navy-sky); font-size: 22px; border: 1px solid rgba(56, 189, 248, 0.2); }
-    .logo-title h1 { font-size: 1.15rem; font-weight: 800; }
-    .logo-title p { font-size: 0.75rem; color: var(--slate-300); }
-    .portal-link-btn { background: var(--navy-blue); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 0.8rem; font-weight: 700; }
-    main { max-width: 860px; margin: 20px auto; width: 100%; padding: 0 16px; flex: 1; }
-    .card { background: white; border-radius: 16px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); border: 1px solid var(--slate-200); }
-    .card-badge { font-size: 0.7rem; font-weight: 800; letter-spacing: 1px; color: var(--slate-400); text-transform: uppercase; margin-bottom: 6px; }
-    .card h2 { font-size: 1.25rem; font-weight: 800; color: var(--slate-900); margin-bottom: 6px; }
-    .card p.subtext { font-size: 0.88rem; color: var(--slate-600); margin-bottom: 18px; line-height: 1.45; }
-    .google-account-banner { background: #F0FDF4; border: 1.5px solid #BBF7D0; border-radius: 12px; padding: 18px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-    .qr-container { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; background: var(--slate-50); border-radius: 14px; border: 1.5px solid var(--slate-200); }
-    .qr-frame { background: white; padding: 16px; border-radius: 14px; border: 2px solid var(--navy-primary); box-shadow: 0 4px 16px rgba(15, 43, 72, 0.12); margin-bottom: 14px; }
-    .qr-frame img { display: block; width: 220px; height: 220px; }
-    .btn { padding: 12px 18px; border-radius: 10px; font-size: 0.9rem; font-weight: 700; border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background-color: var(--slate-100);
+      color: var(--slate-900);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 95px;
+    }
+
+    /* Desktop Navigation Header */
+    header {
+      background-color: var(--navy-primary);
+      color: white;
+      padding: 16px 32px;
+      box-shadow: 0 4px 16px rgba(10, 25, 47, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--navy-dark);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--navy-sky);
+      font-size: 24px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .logo-title h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .logo-title p {
+      font-size: 0.78rem;
+      color: var(--slate-300);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--emerald-success);
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 8px var(--emerald-success);
+    }
+
+    .header-badges {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .role-badge {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--navy-sky);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .portal-link-btn {
+      background: var(--navy-blue);
+      color: white;
+      padding: 8px 18px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      transition: background 0.2s;
+    }
+
+    .portal-link-btn:hover {
+      background: #1D4ED8;
+    }
+
+    /* Main Desktop Grid Layout */
+    main {
+      max-width: 1400px;
+      margin: 24px auto;
+      width: 100%;
+      padding: 0 24px;
+      flex: 1;
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 1024px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      border: 1.5px solid var(--slate-200);
+    }
+
+    .card-badge {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--slate-400);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .card h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-bottom: 6px;
+    }
+
+    .card p.subtext {
+      font-size: 0.85rem;
+      color: var(--slate-600);
+      margin-bottom: 18px;
+      line-height: 1.45;
+    }
+
+    /* Google Sign-in Card */
+    .google-account-banner {
+      background: #F0FDF4;
+      border: 1.5px solid #BBF7D0;
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .google-user-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .google-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--navy-primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .google-meta strong {
+      display: block;
+      color: var(--slate-900);
+      font-size: 0.95rem;
+    }
+
+    .google-meta span {
+      font-size: 0.8rem;
+      color: var(--slate-500);
+    }
+
+    .drive-folder-strip {
+      background: white;
+      border: 1px solid #BBF7D0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .drive-folder-info {
+      font-size: 0.85rem;
+      color: var(--navy-primary);
+      font-weight: 700;
+    }
+
+    .drive-folder-info small {
+      display: block;
+      color: var(--emerald-success);
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    /* QR Code Display on Desktop */
+    .qr-card-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      background: var(--slate-50);
+      border-radius: 14px;
+      border: 1.5px solid var(--slate-200);
+    }
+
+    .qr-frame {
+      background: white;
+      padding: 16px;
+      border-radius: 16px;
+      border: 2.5px solid var(--navy-primary);
+      box-shadow: 0 4px 18px rgba(15, 43, 72, 0.15);
+      margin-bottom: 14px;
+    }
+
+    .qr-frame img {
+      display: block;
+      width: 230px;
+      height: 230px;
+    }
+
+    .qr-url-input-group {
+      width: 100%;
+      margin-bottom: 14px;
+    }
+
+    .qr-url-input-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--slate-600);
+      text-align: left;
+      margin-bottom: 4px;
+    }
+
+    .qr-url-input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid var(--slate-300);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      background: white;
+      color: var(--navy-primary);
+      font-weight: 600;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
     .btn-primary { background: var(--navy-primary); color: white; }
+    .btn-primary:hover { background: var(--navy-dark); }
     .btn-outline { background: white; color: var(--navy-primary); border: 1.5px solid var(--navy-primary); }
+    .btn-outline:hover { background: var(--slate-100); }
     .btn-wa { background: var(--whatsapp-green); color: white; }
-    .doc-item { background: white; border: 1.5px solid var(--slate-200); border-radius: 14px; padding: 16px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
-    .doc-item-header { display: flex; justify-content: space-between; align-items: flex-start; }
-    .doc-title { font-size: 1rem; font-weight: 800; color: var(--slate-900); }
-    .doc-meta { font-size: 0.8rem; color: var(--slate-500); margin-top: 3px; }
-    .status-badge { font-size: 0.72rem; font-weight: 800; padding: 4px 10px; border-radius: 14px; text-transform: uppercase; }
+    .btn-wa:hover { opacity: 0.9; }
+
+    /* Right Column: Print Orders Queue */
+    .queue-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .queue-stats {
+      display: flex;
+      gap: 10px;
+    }
+
+    .stat-pill {
+      background: var(--slate-100);
+      border: 1px solid var(--slate-300);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--slate-700);
+    }
+
+    .doc-item {
+      background: white;
+      border: 1.5px solid var(--slate-200);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      transition: border 0.2s;
+    }
+
+    .doc-item:hover {
+      border-color: var(--navy-blue);
+    }
+
+    .doc-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .doc-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      word-break: break-all;
+    }
+
+    .doc-meta {
+      font-size: 0.82rem;
+      color: var(--slate-600);
+      margin-top: 4px;
+    }
+
+    .status-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
     .status-badge.ready { background: #D1FAE5; color: var(--emerald-success); }
+    .status-badge.printing { background: #E0F2FE; color: var(--navy-blue); }
     .status-badge.pending { background: #FEF3C7; color: var(--amber-warning); }
-    .owner-bottom-banner { position: fixed; bottom: 0; left: 0; right: 0; background: var(--navy-dark); color: white; padding: 14px 20px; box-shadow: 0 -4px 20px rgba(10, 25, 47, 0.35); z-index: 300; }
-    .owner-banner-inner { max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .owner-circle { width: 40px; height: 40px; border-radius: 50%; background: rgba(56, 189, 248, 0.2); color: var(--navy-sky); display: flex; align-items: center; justify-content: center; font-weight: 800; }
-    .circle-btn { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 18px; }
-    .circle-btn.call { background: rgba(255, 255, 255, 0.15); color: white; }
-    .circle-btn.whatsapp { background: var(--whatsapp-green); color: white; }
+
+    .doc-actions-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--slate-100);
+      gap: 10px;
+    }
+
+    /* Fixed App Owner Bottom Banner (Requested) */
+    .owner-bottom-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--navy-dark);
+      color: white;
+      padding: 14px 24px;
+      box-shadow: 0 -4px 20px rgba(10, 25, 47, 0.35);
+      z-index: 300;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .owner-banner-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .owner-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .owner-circle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(56, 189, 248, 0.2);
+      color: var(--navy-sky);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+    }
+
+    .owner-details h4 {
+      font-size: 0.68rem;
+      letter-spacing: 1.2px;
+      color: var(--slate-400);
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .owner-details p {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .banner-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .circle-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 19px;
+      transition: transform 0.15s;
+    }
+
+    .circle-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .circle-btn.call {
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+    }
+
+    .circle-btn.whatsapp {
+      background: var(--whatsapp-green);
+      color: white;
+    }
+
+    /* Print Flyer Modal */
+    #printFlyerArea {
+      display: none;
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printFlyerArea, #printFlyerArea * {
+        visibility: visible;
+      }
+      #printFlyerArea {
+        display: block !important;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        text-align: center;
+        padding: 40px;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Top Header for Desktop -->
   <header>
     <div class="header-content">
       <div class="logo-area">
         <div class="logo-icon">🖨️</div>
         <div class="logo-title">
-          <h1>Customer Print Portal • Owner Dashboard</h1>
-          <p>Google Account: HARI PRASAD DUNNA (renukahari0503@gmail.com)</p>
+          <h1>Shop Owner Desktop Dashboard</h1>
+          <p><span class="status-dot"></span> Google Drive Linked Hub • Hari Prasad Digital Print Hub</p>
         </div>
       </div>
-      <a href="index.html" class="portal-link-btn">Go to Customer Upload Portal ↗</a>
+      <div class="header-badges">
+        <div class="role-badge">🖥️ Desktop Station</div>
+        <a href="customer.html" target="_blank" class="portal-link-btn">Open Customer Portal on Vercel ↗</a>
+      </div>
     </div>
   </header>
 
+  <!-- Desktop Main Two-Column Layout -->
   <main>
-    <!-- Owner Google Account & Folder Info -->
-    <div class="card">
-      <div class="card-badge">STEP 1 • GOOGLE ACCOUNT & DEDICATED FOLDER</div>
-      <h2>Owner Google Drive Sync</h2>
-      <p class="subtext">Upon login with your Google account, a dedicated Google Drive folder is automatically created in your Google Drive named with your name.</p>
+    <!-- Left Column: Google Account, Folder, & Counter QR Code -->
+    <div class="left-col">
 
-      <div class="google-account-banner">
-        <div style="display:flex; align-items:center; gap:12px;">
-          <div style="font-size:32px;">📁</div>
-          <div>
-            <strong style="color:var(--navy-primary); font-size:1rem;">Customer Print Hub - Hari Prasad Dunna</strong>
-            <div style="font-size:0.8rem; color:var(--emerald-success); font-weight:600;">✓ Google Drive Folder Active • Auto-saving customer files</div>
+      <!-- Step 1: Owner Google Account & Drive Folder -->
+      <div class="card">
+        <div class="card-badge">STEP 1 • GOOGLE ACCOUNT & DRIVE FOLDER</div>
+        <h2>Owner Google Drive Folder</h2>
+        <p class="subtext">Signed in with Google. All documents uploaded by customers scanning your QR code are saved directly into your dedicated Google Drive folder.</p>
+
+        <div class="google-account-banner">
+          <div class="google-user-row">
+            <div class="google-avatar">HP</div>
+            <div class="google-meta">
+              <strong>HARI PRASAD DUNNA</strong>
+              <span>renukahari0503@gmail.com • Google Account Active</span>
+            </div>
+          </div>
+
+          <div class="drive-folder-strip">
+            <div class="drive-folder-info">
+              📁 Customer Print Hub - Hari Prasad Dunna
+              <small>✓ Auto-created Google Drive Folder</small>
+            </div>
+            <a href="https://drive.google.com/drive/folders/1zX9_HariPrasadDunna_PrintHubFolder" target="_blank" class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Open Drive ↗</a>
           </div>
         </div>
-        <a href="https://drive.google.com/drive/folders/1zX9_HariPrasadDunna_PrintHubFolder" target="_blank" class="btn btn-outline">Open in Google Drive ↗</a>
       </div>
+
+      <!-- Step 2: Unique Counter QR Code Linked to Customer Portal on Vercel -->
+      <div class="card">
+        <div class="card-badge">STEP 2 • CUSTOMER ACCESS QR CODE</div>
+        <h2>Counter QR Code Generator</h2>
+        <p class="subtext">Display this unique QR code on your shop counter screen or print it out. Customers scan it with their phone camera to upload their files directly into your Google Drive folder.</p>
+
+        <div class="qr-card-center">
+          <div class="qr-frame">
+            <img id="counterQRImage" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fcustomer-print-portal.vercel.app%2F" alt="Shop Customer QR Code">
+          </div>
+
+          <div class="qr-url-input-group">
+            <label>Customer Portal URL (Vercel deployment):</label>
+            <input type="text" id="vercelPortalUrlInput" class="qr-url-input" value="https://customer-print-portal.vercel.app/" oninput="updateCounterQR()">
+          </div>
+
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="openCustomerPortal()">
+              <span>🚀 Test Customer Flow</span>
+            </button>
+            <button class="btn btn-outline" onclick="printCounterFlyer()">
+              <span>🖨️ Print Counter Flyer</span>
+            </button>
+            <button class="btn btn-wa" onclick="shareCounterQRWhatsApp()">
+              <span>💬 Share QR</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <!-- Generated QR Code Linked to Drive Folder -->
-    <div class="card">
-      <div class="card-badge">STEP 2 • CUSTOMER ACCESS QR CODE</div>
-      <h2>Generated QR Code (Linked to Drive Folder)</h2>
-      <p class="subtext">Display this unique QR code at your shop. When customers scan it, they can upload their documents directly into your Google Drive folder named with their phone or name, and later retrieve or download them using the same QR code.</p>
+    <!-- Right Column: Live Incoming Print Orders Queue -->
+    <div class="right-col">
+      <div class="card" style="min-height: 600px;">
+        <div class="card-badge">STEP 3 • LIVE INCOMING PRINT JOBS</div>
+        <div class="queue-header-row">
+          <div>
+            <h2>Google Drive Print Queue</h2>
+            <p class="subtext" style="margin-bottom:0;">Live queue synced with customer uploads. New uploads appear automatically in real-time.</p>
+          </div>
+          <div class="queue-stats">
+            <div class="stat-pill" id="totalJobsPill">2 Total Jobs</div>
+            <div class="stat-pill" style="color:var(--emerald-success); border-color:#BBF7D0;" id="driveFolderPill">Drive: Synced</div>
+          </div>
+        </div>
 
-      <div class="qr-container">
-        <div class="qr-frame">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fdrive.google.com%2Fdrive%2Ffolders%2F1zX9_HariPrasadDunna_PrintHubFolder" alt="Google Drive Folder QR">
-        </div>
-        <div style="background:white; padding:8px 14px; border:1px solid var(--slate-300); border-radius:8px; font-size:0.8rem; margin-bottom:14px;">
-          https://drive.google.com/drive/folders/1zX9_HariPrasadDunna_PrintHubFolder
-        </div>
-        <div style="display:flex; gap:10px;">
-          <a href="index.html" class="btn btn-primary">Test Customer Upload Flow</a>
-          <button class="btn btn-wa" onclick="shareQRWhatsApp()">Share QR via WhatsApp</button>
+        <div id="ownerQueueContainer">
+          <!-- Populated from storage/real-time sync -->
         </div>
       </div>
-    </div>
-
-    <!-- Live Documents Queue -->
-    <div class="card">
-      <div class="card-badge">STEP 3 • UPLOADED CUSTOMER DOCUMENTS</div>
-      <h2>Files in Google Drive: Customer Print Hub</h2>
-      <p class="subtext">These documents were uploaded by customers using your QR code and saved directly into your Google Drive folder.</p>
-
-      <div id="driveDocsList"></div>
     </div>
   </main>
 
+  <!-- Printable Counter Stand Flyer -->
+  <div id="printFlyerArea">
+    <div style="border: 4px solid #0F2B48; border-radius: 24px; padding: 40px; max-width: 600px; margin: 0 auto;">
+      <h1 style="color: #0F2B48; font-size: 28px; margin-bottom: 8px;">HARI PRASAD DIGITAL PRINT HUB</h1>
+      <p style="color: #64748B; font-size: 16px; margin-bottom: 24px;">Fast & Contactless Self-Service Printing</p>
+      
+      <div style="background: white; padding: 20px; display: inline-block; border: 3px solid #0F2B48; border-radius: 16px; margin-bottom: 20px;">
+        <img id="printFlyerQR" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fcustomer-print-portal.vercel.app%2F" width="280" height="280">
+      </div>
+
+      <h2 style="color: #0A192F; font-size: 22px; margin-bottom: 8px;">SCAN WITH PHONE CAMERA TO PRINT</h2>
+      <p style="color: #334155; font-size: 15px; line-height: 1.5;">1. Scan QR code to open Customer Portal on your phone<br>2. Upload document (PDF / DOCX / Image)<br>3. Enter your Phone Number or Name<br>4. Pick up your prints at counter!</p>
+      
+      <hr style="margin: 24px 0; border: 1px solid #E2E8F0;">
+      <div style="font-weight: bold; color: #0F2B48;">Shop Owner: HARI PRASAD DUNNA | +91 9866362137</div>
+    </div>
+  </div>
+
+  <!-- Fixed App Owner Bottom Banner (Requested) -->
   <div class="owner-bottom-banner">
     <div class="owner-banner-inner">
-      <div style="display:flex; align-items:center; gap:12px;">
+      <div class="owner-profile">
         <div class="owner-circle">HP</div>
-        <div>
-          <div style="font-size:0.68rem; letter-spacing:1px; color:var(--slate-400); font-weight:800;">APP OWNER</div>
-          <div style="font-size:0.95rem; font-weight:700; color:white;">HARI PRASAD DUNNA | +91 9866362137</div>
+        <div class="owner-details">
+          <h4>App Owner</h4>
+          <p>HARI PRASAD DUNNA | +91 9866362137</p>
         </div>
       </div>
-      <div style="display:flex; gap:10px;">
-        <a href="tel:+919866362137" class="circle-btn call" title="Call Hari Prasad">📞</a>
-        <a href="https://api.whatsapp.com/send?phone=919866362137&text=Hello%20Hari%20Prasad%2C%20I%20have%20an%20inquiry%20regarding%20Customer%20Print%20Portal" target="_blank" class="circle-btn whatsapp" title="WhatsApp Chat">💬</a>
+      <div class="banner-actions">
+        <a href="tel:+919866362137" class="circle-btn call" title="Call Hari Prasad Dunna">📞</a>
+        <a href="https://api.whatsapp.com/send?phone=919866362137&text=Hello%20Hari%20Prasad%2C%20I%20have%20an%20inquiry%20regarding%20Customer%20Print%20Portal" target="_blank" class="circle-btn whatsapp" title="Chat on WhatsApp">💬</a>
       </div>
     </div>
   </div>
 
   <script>
-    const docs = [
-      { id: 1, name: "9848022338_College_Project_Final.pdf", customer: "Ravi Kumar (9848022338)", size: "1.8 MB", copies: 2, mode: "Black & White", cost: 4, status: "Ready" },
-      { id: 2, name: "9866362137_Shop_Licence.pdf", customer: "Hari Prasad (9866362137)", size: "480 KB", copies: 1, mode: "Color", cost: 10, status: "Pending" }
+    const ownerName = "HARI PRASAD DUNNA";
+    const ownerPhone = "+91 9866362137";
+    const driveFolder = "Customer Print Hub - Hari Prasad Dunna";
+    const driveFolderUrl = "https://drive.google.com/drive/folders/1zX9_HariPrasadDunna_PrintHubFolder";
+
+    // Setup Cross-Window/Cross-Tab Broadcast for Instant Sync
+    const syncChannel = new BroadcastChannel('print_portal_channel');
+
+    // Default Seed Jobs
+    let printJobs = JSON.parse(localStorage.getItem('portal_print_jobs')) || [
+      {
+        id: 101,
+        senderIdentifier: '9848022338',
+        senderName: 'Ravi Kumar',
+        originalFileName: 'College_Project_Final.pdf',
+        storedDriveFileName: '9848022338_College_Project_Final.pdf',
+        size: '1.8 MB',
+        copies: 2,
+        colorMode: 'Black & White',
+        paperSize: 'A4',
+        cost: 4,
+        date: 'Today, 10:30 AM',
+        status: 'Ready',
+        driveFileUrl: 'https://drive.google.com/file/d/demo_101/view'
+      },
+      {
+        id: 102,
+        senderIdentifier: '9866362137',
+        senderName: 'Hari Prasad',
+        originalFileName: 'Shop_Licence.pdf',
+        storedDriveFileName: '9866362137_Shop_Licence.pdf',
+        size: '480 KB',
+        copies: 1,
+        colorMode: 'Color',
+        paperSize: 'A4',
+        cost: 10,
+        date: 'Today, 11:15 AM',
+        status: 'Pending',
+        driveFileUrl: 'https://drive.google.com/file/d/demo_102/view'
+      }
     ];
 
-    function renderDocs() {
-      const el = document.getElementById('driveDocsList');
-      el.innerHTML = docs.map(d => `
+    // Initialize QR Code URL based on current host or Vercel
+    function initPortalUrl() {
+      const input = document.getElementById('vercelPortalUrlInput');
+      // If running locally or on web host, default to customer.html or index.html
+      const currentOrigin = window.location.origin;
+      if (currentOrigin && !currentOrigin.includes('null') && !currentOrigin.startsWith('file')) {
+        input.value = `${currentOrigin}/customer.html`;
+      }
+      updateCounterQR();
+    }
+
+    function updateCounterQR() {
+      const url = document.getElementById('vercelPortalUrlInput').value.trim();
+      const encoded = encodeURIComponent(url);
+      const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encoded}`;
+      document.getElementById('counterQRImage').src = qrApiUrl;
+      document.getElementById('printFlyerQR').src = qrApiUrl;
+    }
+
+    function openCustomerPortal() {
+      const url = document.getElementById('vercelPortalUrlInput').value.trim();
+      window.open(url, '_blank');
+    }
+
+    function printCounterFlyer() {
+      window.print();
+    }
+
+    function shareCounterQRWhatsApp() {
+      const url = document.getElementById('vercelPortalUrlInput').value.trim();
+      const text = encodeURIComponent(`*Customer Print Portal*\nUpload documents directly to Hari Prasad Dunna's Google Drive for instant printing:\n${url}`);
+      window.open(`https://api.whatsapp.com/send?phone=919866362137&text=${text}`, '_blank');
+    }
+
+    function renderQueue() {
+      const container = document.getElementById('ownerQueueContainer');
+      document.getElementById('totalJobsPill').innerText = `${printJobs.length} Total Jobs`;
+
+      if (printJobs.length === 0) {
+        container.innerHTML = `
+          <div style="text-align:center; padding:50px; color:var(--slate-400);">
+            <div style="font-size:44px; margin-bottom:10px;">📭</div>
+            <h3 style="color:var(--slate-700);">No Print Jobs in Queue</h3>
+            <p style="font-size:0.85rem; margin-top:4px;">When customers scan your QR code and upload documents, they will appear here live.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = printJobs.map(doc => `
         <div class="doc-item">
           <div class="doc-item-header">
             <div>
-              <div class="doc-title">${d.name}</div>
-              <div class="doc-meta">Uploaded by: <b>${d.customer}</b> • ${d.size} • ${d.copies} copies • ${d.mode} (₹${d.cost})</div>
-              <div style="font-size:0.75rem; color:var(--emerald-success); margin-top:3px;">📁 Stored in: Customer Print Hub - Hari Prasad Dunna</div>
+              <div class="doc-title">${doc.storedDriveFileName}</div>
+              <div class="doc-meta">
+                Customer: <b>${doc.senderIdentifier}</b> • ${doc.size} • <b>${doc.copies} copies</b> (${doc.colorMode}, ${doc.paperSize}) • Total: <b>₹${doc.cost}</b>
+              </div>
+              <div style="font-size:0.75rem; color:var(--emerald-success); margin-top:4px;">
+                📁 Saved in Google Drive: ${driveFolder}
+              </div>
             </div>
-            <span class="status-badge ${d.status.toLowerCase()}">${d.status}</span>
+            <select onchange="updateJobStatus(${doc.id}, this.value)" style="padding:6px 12px; border-radius:8px; font-weight:800; border:1.5px solid var(--slate-300); background:var(--slate-50);">
+              <option value="Pending" ${doc.status === 'Pending' ? 'selected' : ''}>⏳ Pending</option>
+              <option value="Printing" ${doc.status === 'Printing' ? 'selected' : ''}>🖨️ Printing</option>
+              <option value="Ready" ${doc.status === 'Ready' ? 'selected' : ''}>✅ Ready for Pickup</option>
+            </select>
           </div>
-          <div style="display:flex; gap:10px; margin-top:12px; padding-top:10px; border-top:1px solid var(--slate-100);">
-            <button class="btn btn-outline" style="font-size:0.8rem; padding:8px 12px;" onclick="downloadSample('${d.name}')">⬇️ Download File</button>
-            <button class="btn btn-wa" style="font-size:0.8rem; padding:8px 12px;" onclick="notifyCustomer('${d.customer}', '${d.name}', '${d.cost}')">📲 Send WhatsApp Pickup Notice</button>
+          <div class="doc-actions-row">
+            <div style="font-size:0.75rem; color:var(--slate-400);">${doc.date}</div>
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-outline" style="padding:7px 12px; font-size:0.78rem;" onclick="downloadJobFile('${doc.storedDriveFileName}')">
+                ⬇️ Download
+              </button>
+              <button class="btn btn-wa" style="padding:7px 12px; font-size:0.78rem;" onclick="sendCustomerWhatsAppAlert('${doc.senderIdentifier}', '${doc.storedDriveFileName}', '${doc.cost}')">
+                📲 Send WhatsApp Pickup Notice
+              </button>
+            </div>
           </div>
         </div>
       `).join('');
     }
 
-    function downloadSample(name) {
-      const blob = new Blob([`Customer Print Portal File: ${name}\nOwner: HARI PRASAD DUNNA (+91 9866362137)`], { type: 'text/plain' });
+    function updateJobStatus(id, newStatus) {
+      const job = printJobs.find(j => j.id === id);
+      if (job) {
+        job.status = newStatus;
+        localStorage.setItem('portal_print_jobs', JSON.stringify(printJobs));
+        syncChannel.postMessage({ type: 'STATUS_UPDATED', job: job });
+        renderQueue();
+      }
+    }
+
+    function downloadJobFile(fileName) {
+      const blob = new Blob([`Customer Print Portal File: ${fileName}\nOwner: HARI PRASAD DUNNA (+91 9866362137)\nGoogle Drive Folder: ${driveFolder}`], { type: 'text/plain' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = name;
+      a.download = fileName;
       a.click();
     }
 
-    function notifyCustomer(customer, name, cost) {
-      const phone = customer.replace(/[^0-9]/g, '');
-      const text = encodeURIComponent(`Hello! Your print order *${name}* is ready at *Hari Prasad Digital Print Hub*.\nTotal: ₹${cost}.\nThank you! - Hari Prasad Dunna (+91 9866362137)`);
-      window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${text}`, '_blank');
+    function sendCustomerWhatsAppAlert(phone, fileName, cost) {
+      const cleanPhone = phone.replace(/[^0-9]/g, '');
+      const text = encodeURIComponent(`Hello! Your print job *${fileName}* is READY for pickup at *Hari Prasad Digital Print Hub*.\nTotal amount: ₹${cost}.\nThank you! - Hari Prasad Dunna (+91 9866362137)`);
+      window.open(`https://api.whatsapp.com/send?phone=${cleanPhone}&text=${text}`, '_blank');
     }
 
-    function shareQRWhatsApp() {
-      const url = "https://drive.google.com/drive/folders/1zX9_HariPrasadDunna_PrintHubFolder";
-      const text = encodeURIComponent(`*Customer Print Portal QR Code*\nScan or open this link to upload print documents directly to Hari Prasad Dunna's Google Drive: ${url}`);
-      window.open(`https://api.whatsapp.com/send?phone=919866362137&text=${text}`, '_blank');
-    }
+    // Listen for Real-Time Uploads from customer.html
+    syncChannel.onmessage = (event) => {
+      if (event.data && event.data.type === 'NEW_UPLOAD') {
+        printJobs.unshift(event.data.job);
+        localStorage.setItem('portal_print_jobs', JSON.stringify(printJobs));
+        renderQueue();
+        alert(`🔔 New Print Order Received!\nCustomer: ${event.data.job.senderIdentifier}\nFile: ${event.data.job.storedDriveFileName}\nSaved to Google Drive.`);
+      }
+    };
 
-    renderDocs();
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'portal_print_jobs') {
+        printJobs = JSON.parse(e.newValue || '[]');
+        renderQueue();
+      }
+    });
+
+    initPortalUrl();
+    renderQueue();
   </script>
 </body>
 </html>
