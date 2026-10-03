@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Print Portal - Hari Prasad Dunna</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy-dark: #0A192F;
+      --navy-primary: #0F2B48;
+      --navy-accent: #1E3A8A;
+      --navy-blue: #2563EB;
+      --navy-sky: #38BDF8;
+      --slate-50: #F8FAFC;
+      --slate-100: #F1F5F9;
+      --slate-200: #E2E8F0;
+      --slate-300: #CBD5E1;
+      --slate-400: #94A3B8;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1E293B;
+      --slate-900: #0F172A;
+      --whatsapp-green: #25D366;
+      --amber-warning: #D97706;
+      --emerald-success: #059669;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background-color: var(--slate-100);
+      color: var(--slate-900);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 90px;
+    }
+
+    header {
+      background-color: var(--navy-primary);
+      color: white;
+      padding: 14px 20px;
+      box-shadow: 0 4px 12px rgba(10, 25, 47, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--navy-dark);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--navy-sky);
+      font-size: 20px;
+    }
+
+    .logo-title h1 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .logo-title p {
+      font-size: 0.75rem;
+      color: var(--slate-300);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background-color: var(--emerald-success);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .role-switcher {
+      background: var(--navy-dark);
+      color: white;
+      border: 1px solid var(--slate-700);
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .role-switcher:hover {
+      background: var(--navy-accent);
+    }
+
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      width: 100%;
+      padding: 0 16px;
+      flex: 1;
+    }
+
+    .nav-tabs {
+      display: flex;
+      background: white;
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      border: 1px solid var(--slate-200);
+    }
+
+    .nav-tab {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--slate-600);
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .nav-tab.active {
+      background: var(--navy-primary);
+      color: white;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      border: 1px solid var(--slate-200);
+    }
+
+    .card-header-badge {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--slate-400);
+      margin-bottom: 6px;
+    }
+
+    .card h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin-bottom: 6px;
+    }
+
+    .card p.subtext {
+      font-size: 0.85rem;
+      color: var(--slate-600);
+      margin-bottom: 18px;
+    }
+
+    .dropzone {
+      border: 2px dashed var(--slate-300);
+      background: var(--slate-50);
+      border-radius: 12px;
+      padding: 30px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .dropzone:hover {
+      border-color: var(--navy-blue);
+      background: #EFF6FF;
+    }
+
+    .dropzone-icon {
+      font-size: 32px;
+      color: var(--navy-blue);
+      margin-bottom: 8px;
+    }
+
+    .dropzone p {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--navy-primary);
+    }
+
+    .dropzone span {
+      font-size: 0.78rem;
+      color: var(--slate-400);
+    }
+
+    .file-input-hidden {
+      display: none;
+    }
+
+    .selected-file-badge {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--slate-100);
+      border: 1px solid var(--navy-blue);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-top: 14px;
+    }
+
+    .selected-file-badge.visible {
+      display: flex;
+    }
+
+    .form-group {
+      margin-top: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--slate-800);
+      margin-bottom: 6px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--slate-300);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      color: var(--slate-900);
+      background: white;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    .form-input:focus {
+      border-color: var(--navy-primary);
+      box-shadow: 0 0 0 3px rgba(15, 43, 72, 0.1);
+    }
+
+    .naming-preview {
+      display: none;
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: var(--emerald-success);
+    }
+
+    .naming-preview.visible {
+      display: block;
+    }
+
+    .naming-preview strong {
+      display: block;
+      color: var(--navy-primary);
+      font-size: 0.9rem;
+      margin-top: 2px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .option-btn {
+      padding: 10px;
+      border: 1px solid var(--slate-300);
+      background: var(--slate-100);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--slate-700);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s;
+    }
+
+    .option-btn.selected {
+      background: var(--navy-primary);
+      border-color: var(--navy-primary);
+      color: white;
+    }
+
+    .copies-stepper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .step-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: var(--slate-200);
+      color: var(--slate-800);
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-btn.add {
+      background: var(--navy-primary);
+      color: white;
+    }
+
+    .copies-count {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy-primary);
+      min-width: 30px;
+      text-align: center;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--navy-primary);
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: var(--navy-dark);
+    }
+
+    .doc-item {
+      background: white;
+      border: 1px solid var(--slate-200);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+
+    .doc-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .doc-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--slate-900);
+      word-break: break-all;
+    }
+
+    .doc-meta {
+      font-size: 0.78rem;
+      color: var(--slate-400);
+      margin-top: 2px;
+    }
+
+    .status-pill {
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-pill.pending { background: #FEF3C7; color: var(--amber-warning); }
+    .status-pill.printing { background: #E0F2FE; color: var(--navy-blue); }
+    .status-pill.ready { background: #D1FAE5; color: var(--emerald-success); }
+
+    .doc-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--slate-100);
+    }
+
+    .btn-action {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid var(--slate-300);
+      background: white;
+      color: var(--slate-700);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+
+    .btn-action.whatsapp {
+      background: var(--whatsapp-green);
+      color: white;
+      border-color: var(--whatsapp-green);
+    }
+
+    .btn-action:hover {
+      opacity: 0.9;
+    }
+
+    /* Fixed Bottom Banner requested */
+    .owner-bottom-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--navy-dark);
+      color: white;
+      padding: 14px 20px;
+      box-shadow: 0 -4px 16px rgba(10, 25, 47, 0.25);
+      z-index: 200;
+    }
+
+    .owner-banner-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .owner-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .owner-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(56, 189, 248, 0.2);
+      color: var(--navy-sky);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .owner-text h4 {
+      font-size: 0.65rem;
+      letter-spacing: 1px;
+      color: var(--slate-400);
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .owner-text p {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .owner-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .circle-action-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      transition: transform 0.15s;
+    }
+
+    .circle-action-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .circle-action-btn.call {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .circle-action-btn.wa {
+      background: var(--whatsapp-green);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header>
+    <div class="header-content">
+      <div class="logo-area">
+        <div class="logo-icon">🖨️</div>
+        <div class="logo-title">
+          <h1>Customer Print Portal</h1>
+          <p><span class="status-dot"></span> Google Drive Cloud Synced</p>
+        </div>
+      </div>
+      <button class="role-switcher" id="roleToggleBtn" onclick="toggleRole()">
+        <span id="roleLabel">Switch to Owner View</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main>
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs">
+      <button class="nav-tab active" id="tabUpload" onclick="switchTab('upload')">Upload for Print</button>
+      <button class="nav-tab" id="tabSearch" onclick="switchTab('search')">Search & Download</button>
+      <button class="nav-tab" id="tabOwner" onclick="switchTab('owner')" style="display:none;">Owner Queue</button>
+    </div>
+
+    <!-- Tab 1: Upload View -->
+    <div id="viewUpload">
+      <div class="card">
+        <div class="card-header-badge">1. SELECT DOCUMENT</div>
+        <h2>Upload Document</h2>
+        <p class="subtext">Upload files for high-speed printing, binding, or document editing.</p>
+
+        <div class="dropzone" onclick="document.getElementById('fileInput').click()">
+          <div class="dropzone-icon">📄</div>
+          <p>Click or drag to select document</p>
+          <span>PDF, Word DOCX, PNG, JPG (Up to 50MB)</span>
+        </div>
+        <input type="file" id="fileInput" class="file-input-hidden" onchange="handleFileSelect(event)">
+
+        <div class="selected-file-badge" id="selectedFileBadge">
+          <div>
+            <div id="selectedFileName" style="font-weight:700; font-size:0.9rem; color:var(--navy-primary)">filename.pdf</div>
+            <div id="selectedFileSize" style="font-size:0.75rem; color:var(--slate-400)">0 KB</div>
+          </div>
+          <button style="border:none; background:none; color:var(--navy-blue); font-weight:600; cursor:pointer;" onclick="document.getElementById('fileInput').click()">Change</button>
+        </div>
+
+        <div style="margin-top: 10px;">
+          <button style="border:1px dashed var(--slate-300); background:none; padding:8px 14px; border-radius:8px; font-size:0.8rem; color:var(--slate-600); cursor:pointer; width:100%" onclick="useSampleDoc()">
+            📎 Or Click to Use Demo Sample Document
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header-badge">2. CUSTOMER IDENTIFICATION</div>
+        <h2>Phone Number or Name</h2>
+        <p class="subtext">The uploaded file is automatically named using your phone number or name for security and easy retrieval.</p>
+
+        <div class="form-group">
+          <label>Your Phone Number or Full Name *</label>
+          <input type="text" id="customerIdInput" class="form-input" placeholder="e.g. 9866362137 or Hari Prasad" oninput="updateAutoNamingPreview()">
+        </div>
+
+        <div class="naming-preview" id="namingPreview">
+          <div>Auto-naming convention applied:</div>
+          <strong id="previewFileName">9866362137_Document.pdf</strong>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header-badge">3. PRINT PREFERENCES</div>
+        <h2>Copies & Options</h2>
+
+        <div class="form-group">
+          <label>Number of Copies</label>
+          <div class="copies-stepper">
+            <button class="step-btn" onclick="changeCopies(-1)">-</button>
+            <div class="copies-count" id="copiesDisplay">1</div>
+            <button class="step-btn add" onclick="changeCopies(1)">+</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Color Mode</label>
+          <div class="options-grid">
+            <div class="option-btn selected" id="optBW" onclick="setColorMode('Black & White', 2)">Black & White (₹2/pg)</div>
+            <div class="option-btn" id="optColor" onclick="setColorMode('Color', 10)">Full Color (₹10/pg)</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Paper Size</label>
+          <div class="options-grid">
+            <div class="option-btn selected" id="optA4" onclick="setPaperSize('A4')">A4 Standard</div>
+            <div class="option-btn" id="optA3" onclick="setPaperSize('A3')">A3 Large</div>
+            <div class="option-btn" id="optLegal" onclick="setPaperSize('Legal')">Legal</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Special Instructions / Notes (Optional)</label>
+          <input type="text" id="notesInput" class="form-input" placeholder="e.g. Print pages 1-5 only, back to back, spiral binding">
+        </div>
+
+        <button class="btn-submit" onclick="submitPrintJob()">
+          <span>Submit Print Job</span>
+          <span id="priceBadge">(₹2)</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Tab 2: Search & Download View -->
+    <div id="viewSearch" style="display:none;">
+      <div class="card">
+        <div class="card-header-badge">DOCUMENT SEARCH</div>
+        <h2>Search & Download Documents</h2>
+        <p class="subtext">Enter your phone number or name to search, download, or share your files via WhatsApp.</p>
+
+        <div class="form-group">
+          <input type="text" id="searchInput" class="form-input" placeholder="Enter Phone Number or Name..." oninput="filterDocuments()">
+        </div>
+      </div>
+
+      <div id="documentsList">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Tab 3: Owner Dashboard View (When owner mode is toggled) -->
+    <div id="viewOwner" style="display:none;">
+      <div class="card">
+        <div class="card-header-badge">SHOP OWNER HUB</div>
+        <h2>Live Print Orders Queue</h2>
+        <p class="subtext">Manage incoming prints, Google Drive backups, and send WhatsApp alerts to customers.</p>
+        <div id="ownerQueueList">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Sticky Bottom App Owner Banner (Requested) -->
+  <div class="owner-bottom-banner">
+    <div class="owner-banner-content">
+      <div class="owner-info">
+        <div class="owner-avatar">HP</div>
+        <div class="owner-text">
+          <h4>App Owner</h4>
+          <p>HARI PRASAD DUNNA | +91 9866362137</p>
+        </div>
+      </div>
+      <div class="owner-actions">
+        <a href="tel:+919866362137" class="circle-action-btn call" title="Call Hari Prasad">📞</a>
+        <a href="https://api.whatsapp.com/send?phone=919866362137&text=Hello%20Hari%20Prasad%2C%20I%20have%20an%20inquiry%20regarding%20Customer%20Print%20Portal" target="_blank" class="circle-action-btn wa" title="WhatsApp Hari Prasad">💬</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // State Store
+    let selectedFile = null;
+    let copies = 1;
+    let colorMode = 'Black & White';
+    let ratePerPage = 2;
+    let paperSize = 'A4';
+    let currentRole = 'customer';
+
+    // Demo Initial Data
+    let printJobs = [
+      {
+        id: 1,
+        customerIdentifier: '9848022338',
+        customerName: 'Ravi Kumar',
+        originalName: 'Project_Report.pdf',
+        storedName: '9848022338_Project_Report.pdf',
+        size: '2.4 MB',
+        copies: 2,
+        colorMode: 'Black & White',
+        paperSize: 'A4',
+        cost: 4,
+        date: 'Today, 10:15 AM',
+        status: 'Ready'
+      },
+      {
+        id: 2,
+        customerIdentifier: '9866362137',
+        customerName: 'Hari Prasad',
+        originalName: 'Invoice_Sample.pdf',
+        storedName: '9866362137_Invoice_Sample.pdf',
+        size: '420 KB',
+        copies: 1,
+        colorMode: 'Color',
+        paperSize: 'A4',
+        cost: 10,
+        date: 'Today, 11:30 AM',
+        status: 'Pending'
+      }
+    ];
+
+    function handleFileSelect(e) {
+      if (e.target.files && e.target.files[0]) {
+        selectedFile = e.target.files[0];
+        document.getElementById('selectedFileName').innerText = selectedFile.name;
+        document.getElementById('selectedFileSize').innerText = (selectedFile.size / 1024).toFixed(1) + ' KB';
+        document.getElementById('selectedFileBadge').classList.add('visible');
+        updateAutoNamingPreview();
+      }
+    }
+
+    function useSampleDoc() {
+      selectedFile = {
+        name: 'Government_ID_Form.pdf',
+        size: 345000
+      };
+      document.getElementById('selectedFileName').innerText = selectedFile.name;
+      document.getElementById('selectedFileSize').innerText = '345 KB (Demo File)';
+      document.getElementById('selectedFileBadge').classList.add('visible');
+      updateAutoNamingPreview();
+    }
+
+    function updateAutoNamingPreview() {
+      const id = document.getElementById('customerIdInput').value.trim();
+      const preview = document.getElementById('namingPreview');
+      const previewName = document.getElementById('previewFileName');
+      if (id.length > 0) {
+        const ext = selectedFile ? selectedFile.name.split('.').pop() : 'pdf';
+        const cleanId = id.replace(/[^a-zA-Z0-9_+]/g, '_');
+        previewName.innerText = `${cleanId}_${new Date().toISOString().slice(5,10).replace('-','')}.${ext}`;
+        preview.classList.add('visible');
+      } else {
+        preview.classList.remove('visible');
+      }
+    }
+
+    function changeCopies(delta) {
+      copies = Math.max(1, copies + delta);
+      document.getElementById('copiesDisplay').innerText = copies;
+      updateCost();
+    }
+
+    function setColorMode(mode, rate) {
+      colorMode = mode;
+      ratePerPage = rate;
+      document.getElementById('optBW').classList.toggle('selected', mode === 'Black & White');
+      document.getElementById('optColor').classList.toggle('selected', mode === 'Color');
+      updateCost();
+    }
+
+    function setPaperSize(size) {
+      paperSize = size;
+      ['A4', 'A3', 'Legal'].forEach(s => {
+        document.getElementById('opt' + s).classList.toggle('selected', s === size);
+      });
+    }
+
+    function updateCost() {
+      const total = ratePerPage * copies;
+      document.getElementById('priceBadge').innerText = `(₹${total})`;
+    }
+
+    function submitPrintJob() {
+      const identifier = document.getElementById('customerIdInput').value.trim();
+      if (!identifier) {
+        alert('Please enter your Phone Number or Name.');
+        return;
+      }
+
+      const origName = selectedFile ? selectedFile.name : 'Document.pdf';
+      const ext = origName.split('.').pop();
+      const cleanId = identifier.replace(/[^a-zA-Z0-9_+]/g, '_');
+      const targetName = `${cleanId}_${Date.now().toString().slice(-4)}.${ext}`;
+
+      const newJob = {
+        id: Date.now(),
+        customerIdentifier: identifier,
+        customerName: identifier,
+        originalName: origName,
+        storedName: targetName,
+        size: selectedFile ? (selectedFile.size / 1024).toFixed(0) + ' KB' : '500 KB',
+        copies: copies,
+        colorMode: colorMode,
+        paperSize: paperSize,
+        cost: ratePerPage * copies,
+        date: 'Just now',
+        status: 'Pending'
+      };
+
+      printJobs.unshift(newJob);
+      alert(`Success! File uploaded & saved as:\n${targetName}\nSynced with Google Drive (Customer Print Hub).`);
+
+      // Reset
+      document.getElementById('customerIdInput').value = '';
+      document.getElementById('selectedFileBadge').classList.remove('visible');
+      document.getElementById('namingPreview').classList.remove('visible');
+      selectedFile = null;
+
+      // Switch to search view and prefill
+      switchTab('search');
+      document.getElementById('searchInput').value = identifier;
+      filterDocuments();
+    }
+
+    function switchTab(tab) {
+      document.getElementById('tabUpload').classList.toggle('active', tab === 'upload');
+      document.getElementById('tabSearch').classList.toggle('active', tab === 'search');
+      if (document.getElementById('tabOwner')) {
+        document.getElementById('tabOwner').classList.toggle('active', tab === 'owner');
+      }
+
+      document.getElementById('viewUpload').style.display = tab === 'upload' ? 'block' : 'none';
+      document.getElementById('viewSearch').style.display = tab === 'search' ? 'block' : 'none';
+      document.getElementById('viewOwner').style.display = tab === 'owner' ? 'block' : 'none';
+
+      if (tab === 'search') filterDocuments();
+      if (tab === 'owner') renderOwnerQueue();
+    }
+
+    function filterDocuments() {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const listEl = document.getElementById('documentsList');
+      const matched = printJobs.filter(j => 
+        j.customerIdentifier.toLowerCase().includes(query) ||
+        j.storedName.toLowerCase().includes(query) ||
+        j.originalName.toLowerCase().includes(query)
+      );
+
+      if (matched.length === 0) {
+        listEl.innerHTML = `
+          <div class="card" style="text-align:center; padding:30px;">
+            <div style="font-size:32px; color:var(--slate-400); margin-bottom:8px;">🔍</div>
+            <h3>No documents found</h3>
+            <p style="font-size:0.85rem; color:var(--slate-600); margin-top:4px;">Try searching with the exact phone number or name used during upload.</p>
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = matched.map(doc => `
+        <div class="doc-item">
+          <div class="doc-item-header">
+            <div>
+              <div class="doc-name">${doc.storedName}</div>
+              <div class="doc-meta">${doc.date} • ${doc.size} • ₹${doc.cost} (${doc.copies} copy, ${doc.colorMode})</div>
+            </div>
+            <div class="status-pill ${doc.status.toLowerCase()}">${doc.status}</div>
+          </div>
+          <div class="doc-actions">
+            <button class="btn-action" onclick="downloadDoc('${doc.storedName}')">
+              ⬇️ Download
+            </button>
+            <button class="btn-action whatsapp" onclick="shareWhatsApp('${doc.storedName}', '${doc.customerIdentifier}')">
+              💬 WhatsApp Share
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderOwnerQueue() {
+      const listEl = document.getElementById('ownerQueueList');
+      listEl.innerHTML = printJobs.map(doc => `
+        <div class="doc-item">
+          <div class="doc-item-header">
+            <div>
+              <div class="doc-name">${doc.storedName}</div>
+              <div class="doc-meta">Customer: <b>${doc.customerIdentifier}</b> • ${doc.copies} copies • ${doc.colorMode} (₹${doc.cost})</div>
+            </div>
+            <select onchange="updateDocStatus(${doc.id}, this.value)" style="padding:4px 8px; border-radius:6px; font-weight:700;">
+              <option value="Pending" ${doc.status === 'Pending' ? 'selected' : ''}>Pending</option>
+              <option value="Printing" ${doc.status === 'Printing' ? 'selected' : ''}>Printing</option>
+              <option value="Ready" ${doc.status === 'Ready' ? 'selected' : ''}>Ready</option>
+            </select>
+          </div>
+          <div class="doc-actions">
+            <button class="btn-action" onclick="downloadDoc('${doc.storedName}')">⬇️ Save File</button>
+            <button class="btn-action whatsapp" onclick="notifyCustomer('${doc.customerIdentifier}', '${doc.storedName}')">📲 Send WhatsApp Ready Alert</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function updateDocStatus(id, newStatus) {
+      const doc = printJobs.find(j => j.id === id);
+      if (doc) doc.status = newStatus;
+      renderOwnerQueue();
+    }
+
+    function downloadDoc(name) {
+      const blob = new Blob([`Customer Print Portal Document: ${name}\nOwner: HARI PRASAD DUNNA (+91 9866362137)`], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = name;
+      a.click();
+    }
+
+    function shareWhatsApp(name, phone) {
+      const msg = encodeURIComponent(`Customer Print Portal Document: ${name} (Customer: ${phone}). Print shop owner: Hari Prasad Dunna (+91 9866362137).`);
+      window.open(`https://api.whatsapp.com/send?text=${msg}`, '_blank');
+    }
+
+    function notifyCustomer(phone, name) {
+      const cleanPhone = phone.replace(/[^0-9]/g, '');
+      const msg = encodeURIComponent(`Hello! Your print order '${name}' is READY for pickup at Hari Prasad Digital Print Hub (+91 9866362137). Thank you!`);
+      window.open(`https://api.whatsapp.com/send?phone=${cleanPhone}&text=${msg}`, '_blank');
+    }
+
+    function toggleRole() {
+      if (currentRole === 'customer') {
+        currentRole = 'owner';
+        document.getElementById('roleLabel').innerText = 'Switch to Customer View';
+        document.getElementById('tabOwner').style.display = 'block';
+        switchTab('owner');
+      } else {
+        currentRole = 'customer';
+        document.getElementById('roleLabel').innerText = 'Switch to Owner View';
+        document.getElementById('tabOwner').style.display = 'none';
+        switchTab('upload');
+      }
+    }
+
+    // Initial render
+    filterDocuments();
+  </script>
+</body>
+</html>
