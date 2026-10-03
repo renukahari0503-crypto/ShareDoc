@@ -1,0 +1,6 @@
+{
+  "name": "Customer Print Portal",
+  "description": "Shop-owner print management with Google account login, Drive folder sync, customer QR code, document upload & search, and WhatsApp sharing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
