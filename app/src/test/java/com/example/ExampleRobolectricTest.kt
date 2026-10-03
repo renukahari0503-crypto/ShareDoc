@@ -69,4 +69,13 @@ class ExampleRobolectricTest {
         assertEquals("HARI PRASAD DUNNA", config.ownerName)
         assertEquals("+91 9866362137", config.ownerPhone)
     }
+
+    @Test
+    fun `test google drive folder qr code generation`() {
+        val driveFolderUrl = "https://drive.google.com/drive/folders/1zX9_HariPrasadDunna_PrintHubFolder"
+        val qrBitmap = QRCodeGenerator.generateQRCode(driveFolderUrl, 250, 250)
+        assertNotNull(qrBitmap)
+        assertEquals(250, qrBitmap!!.width)
+        assertEquals(250, qrBitmap.height)
+    }
 }

@@ -26,6 +26,7 @@
       --whatsapp-green: #25D366;
       --amber-warning: #D97706;
       --emerald-success: #059669;
+      --rose-danger: #E11D48;
     }
 
     * {
@@ -41,21 +42,22 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      padding-bottom: 90px;
+      padding-bottom: 95px;
     }
 
+    /* Top Navigation Header */
     header {
       background-color: var(--navy-primary);
       color: white;
       padding: 14px 20px;
-      box-shadow: 0 4px 12px rgba(10, 25, 47, 0.15);
+      box-shadow: 0 4px 14px rgba(10, 25, 47, 0.2);
       position: sticky;
       top: 0;
       z-index: 100;
     }
 
     .header-content {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
@@ -69,20 +71,21 @@
     }
 
     .logo-icon {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       background: var(--navy-dark);
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--navy-sky);
-      font-size: 20px;
+      font-size: 22px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
     }
 
     .logo-title h1 {
-      font-size: 1.1rem;
-      font-weight: 700;
+      font-size: 1.15rem;
+      font-weight: 800;
       letter-spacing: -0.3px;
     }
 
@@ -100,64 +103,45 @@
       background-color: var(--emerald-success);
       border-radius: 50%;
       display: inline-block;
+      box-shadow: 0 0 6px var(--emerald-success);
     }
 
-    .role-switcher {
-      background: var(--navy-dark);
-      color: white;
-      border: 1px solid var(--slate-700);
-      padding: 7px 14px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
+    .view-switcher {
       display: flex;
-      align-items: center;
-      gap: 6px;
+      background: var(--navy-dark);
+      border: 1px solid var(--slate-700);
+      padding: 4px;
+      border-radius: 24px;
+      gap: 4px;
+    }
+
+    .view-btn {
+      background: transparent;
+      color: var(--slate-300);
+      border: none;
+      padding: 6px 14px;
+      border-radius: 18px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
       transition: all 0.2s;
     }
 
-    .role-switcher:hover {
-      background: var(--navy-accent);
+    .view-btn.active {
+      background: var(--navy-blue);
+      color: white;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
     }
 
     main {
-      max-width: 800px;
+      max-width: 860px;
       margin: 20px auto;
       width: 100%;
       padding: 0 16px;
       flex: 1;
     }
 
-    .nav-tabs {
-      display: flex;
-      background: white;
-      border-radius: 12px;
-      padding: 4px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      border: 1px solid var(--slate-200);
-    }
-
-    .nav-tab {
-      flex: 1;
-      text-align: center;
-      padding: 10px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--slate-600);
-      background: transparent;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .nav-tab.active {
-      background: var(--navy-primary);
-      color: white;
-    }
-
+    /* Cards */
     .card {
       background: white;
       border-radius: 16px;
@@ -167,27 +151,197 @@
       border: 1px solid var(--slate-200);
     }
 
-    .card-header-badge {
+    .card-badge {
       font-size: 0.7rem;
       font-weight: 800;
       letter-spacing: 1px;
       color: var(--slate-400);
+      text-transform: uppercase;
       margin-bottom: 6px;
     }
 
     .card h2 {
       font-size: 1.25rem;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--slate-900);
       margin-bottom: 6px;
     }
 
     .card p.subtext {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: var(--slate-600);
       margin-bottom: 18px;
+      line-height: 1.45;
     }
 
+    /* Google Login Box */
+    .google-login-box {
+      background: var(--slate-50);
+      border: 1.5.dp solid var(--slate-200);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .btn-google {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: white;
+      color: #3c4043;
+      border: 1px solid #dadce0;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(60,64,67, 0.15);
+      transition: all 0.2s;
+    }
+
+    .btn-google:hover {
+      box-shadow: 0 2px 6px rgba(60,64,67, 0.25);
+      background: #f8fafd;
+    }
+
+    .btn-google svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Folder Created Banner */
+    .folder-success-box {
+      background: #F0FDF4;
+      border: 1.5px solid #BBF7D0;
+      border-radius: 12px;
+      padding: 18px;
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .folder-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .folder-icon {
+      font-size: 26px;
+    }
+
+    .folder-meta {
+      flex: 1;
+    }
+
+    .folder-meta strong {
+      display: block;
+      color: var(--navy-primary);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .folder-meta span {
+      font-size: 0.8rem;
+      color: var(--emerald-success);
+      font-weight: 600;
+    }
+
+    /* QR Code Display Card */
+    .qr-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      background: var(--slate-50);
+      border-radius: 14px;
+      border: 1.5px solid var(--slate-200);
+      margin: 16px 0;
+    }
+
+    .qr-frame {
+      background: white;
+      padding: 16px;
+      border-radius: 14px;
+      border: 2px solid var(--navy-primary);
+      box-shadow: 0 4px 16px rgba(15, 43, 72, 0.12);
+      margin-bottom: 14px;
+    }
+
+    .qr-frame img {
+      display: block;
+      width: 210px;
+      height: 210px;
+    }
+
+    .qr-url-badge {
+      background: white;
+      border: 1px solid var(--slate-300);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.8rem;
+      color: var(--slate-700);
+      word-break: break-all;
+      max-width: 100%;
+      margin-bottom: 12px;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      max-width: 450px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--navy-primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--navy-dark);
+    }
+
+    .btn-outline {
+      background: white;
+      color: var(--navy-primary);
+      border: 1.5px solid var(--navy-primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--slate-100);
+    }
+
+    .btn-wa {
+      background: var(--whatsapp-green);
+      color: white;
+    }
+
+    .btn-wa:hover {
+      opacity: 0.9;
+    }
+
+    /* Customer Upload Form */
     .dropzone {
       border: 2px dashed var(--slate-300);
       background: var(--slate-50);
@@ -204,19 +358,18 @@
     }
 
     .dropzone-icon {
-      font-size: 32px;
-      color: var(--navy-blue);
+      font-size: 36px;
       margin-bottom: 8px;
     }
 
     .dropzone p {
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.95rem;
       color: var(--navy-primary);
     }
 
     .dropzone span {
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       color: var(--slate-400);
     }
 
@@ -224,18 +377,18 @@
       display: none;
     }
 
-    .selected-file-badge {
+    .file-chosen-box {
       display: none;
       align-items: center;
       justify-content: space-between;
       background: var(--slate-100);
-      border: 1px solid var(--navy-blue);
+      border: 1.5px solid var(--navy-blue);
       border-radius: 10px;
       padding: 12px 16px;
       margin-top: 14px;
     }
 
-    .selected-file-badge.visible {
+    .file-chosen-box.visible {
       display: flex;
     }
 
@@ -246,16 +399,16 @@
     .form-group label {
       display: block;
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--slate-800);
       margin-bottom: 6px;
     }
 
     .form-input {
       width: 100%;
-      padding: 12px 14px;
-      border: 1px solid var(--slate-300);
-      border-radius: 8px;
+      padding: 13px 14px;
+      border: 1.5px solid var(--slate-300);
+      border-radius: 10px;
       font-size: 0.95rem;
       color: var(--slate-900);
       background: white;
@@ -265,52 +418,53 @@
 
     .form-input:focus {
       border-color: var(--navy-primary);
-      box-shadow: 0 0 0 3px rgba(15, 43, 72, 0.1);
+      box-shadow: 0 0 0 3px rgba(15, 43, 72, 0.12);
     }
 
-    .naming-preview {
+    .naming-notice {
       display: none;
-      background: #F0FDF4;
-      border: 1px solid #BBF7D0;
-      border-radius: 8px;
-      padding: 10px 14px;
-      margin-top: 10px;
-      font-size: 0.82rem;
-      color: var(--emerald-success);
+      background: #EFF6FF;
+      border: 1.5px solid #BFDBFE;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: var(--navy-blue);
     }
 
-    .naming-preview.visible {
+    .naming-notice.visible {
       display: block;
     }
 
-    .naming-preview strong {
+    .naming-notice strong {
       display: block;
-      color: var(--navy-primary);
-      font-size: 0.9rem;
-      margin-top: 2px;
+      color: var(--navy-dark);
+      font-size: 0.95rem;
+      margin-top: 3px;
     }
 
-    .options-grid {
+    /* Print preferences */
+    .pref-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
       gap: 10px;
       margin-top: 8px;
     }
 
-    .option-btn {
+    .pref-pill {
       padding: 10px;
-      border: 1px solid var(--slate-300);
+      border: 1.5px solid var(--slate-300);
       background: var(--slate-100);
       border-radius: 8px;
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--slate-700);
       cursor: pointer;
       text-align: center;
       transition: all 0.15s;
     }
 
-    .option-btn.selected {
+    .pref-pill.selected {
       background: var(--navy-primary);
       border-color: var(--navy-primary);
       color: white;
@@ -323,14 +477,14 @@
       margin-top: 6px;
     }
 
-    .step-btn {
-      width: 36px;
-      height: 36px;
+    .stepper-btn {
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       border: none;
       background: var(--slate-200);
       color: var(--slate-800);
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold;
       cursor: pointer;
       display: flex;
@@ -338,47 +492,26 @@
       justify-content: center;
     }
 
-    .step-btn.add {
+    .stepper-btn.add {
       background: var(--navy-primary);
       color: white;
     }
 
-    .copies-count {
-      font-size: 1.1rem;
-      font-weight: 700;
+    .copies-num {
+      font-size: 1.15rem;
+      font-weight: 800;
       color: var(--navy-primary);
-      min-width: 30px;
+      min-width: 32px;
       text-align: center;
     }
 
-    .btn-submit {
-      width: 100%;
-      background: var(--navy-primary);
-      color: white;
-      border: none;
-      padding: 16px;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: background 0.2s;
-    }
-
-    .btn-submit:hover {
-      background: var(--navy-dark);
-    }
-
+    /* Document List Item */
     .doc-item {
       background: white;
-      border: 1px solid var(--slate-200);
+      border: 1.5px solid var(--slate-200);
       border-radius: 14px;
       padding: 16px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.03);
     }
 
@@ -386,36 +519,37 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 8px;
+      gap: 10px;
     }
 
-    .doc-name {
+    .doc-item-title {
       font-size: 1rem;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--slate-900);
       word-break: break-all;
     }
 
-    .doc-meta {
-      font-size: 0.78rem;
-      color: var(--slate-400);
-      margin-top: 2px;
+    .doc-item-meta {
+      font-size: 0.8rem;
+      color: var(--slate-500);
+      margin-top: 3px;
     }
 
-    .status-pill {
-      font-size: 0.7rem;
+    .status-badge {
+      font-size: 0.72rem;
       font-weight: 800;
       padding: 4px 10px;
-      border-radius: 12px;
+      border-radius: 14px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      white-space: nowrap;
     }
 
-    .status-pill.pending { background: #FEF3C7; color: var(--amber-warning); }
-    .status-pill.printing { background: #E0F2FE; color: var(--navy-blue); }
-    .status-pill.ready { background: #D1FAE5; color: var(--emerald-success); }
+    .status-badge.pending { background: #FEF3C7; color: var(--amber-warning); }
+    .status-badge.printing { background: #E0F2FE; color: var(--navy-blue); }
+    .status-badge.ready { background: #D1FAE5; color: var(--emerald-success); }
 
-    .doc-actions {
+    .doc-actions-row {
       display: flex;
       gap: 10px;
       margin-top: 14px;
@@ -423,34 +557,7 @@
       border-top: 1px solid var(--slate-100);
     }
 
-    .btn-action {
-      flex: 1;
-      padding: 10px;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      border: 1px solid var(--slate-300);
-      background: white;
-      color: var(--slate-700);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: all 0.15s;
-    }
-
-    .btn-action.whatsapp {
-      background: var(--whatsapp-green);
-      color: white;
-      border-color: var(--whatsapp-green);
-    }
-
-    .btn-action:hover {
-      opacity: 0.9;
-    }
-
-    /* Fixed Bottom Banner requested */
+    /* Fixed App Owner Bottom Banner (Requested) */
     .owner-bottom-banner {
       position: fixed;
       bottom: 0;
@@ -459,78 +566,82 @@
       background: var(--navy-dark);
       color: white;
       padding: 14px 20px;
-      box-shadow: 0 -4px 16px rgba(10, 25, 47, 0.25);
-      z-index: 200;
+      box-shadow: 0 -4px 20px rgba(10, 25, 47, 0.35);
+      z-index: 300;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .owner-banner-content {
-      max-width: 900px;
+    .owner-banner-inner {
+      max-width: 960px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .owner-info {
+    .owner-profile {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .owner-avatar {
-      width: 38px;
-      height: 38px;
+    .owner-circle {
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       background: rgba(56, 189, 248, 0.2);
       color: var(--navy-sky);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: bold;
+      font-weight: 800;
+      font-size: 0.85rem;
+      border: 1px solid rgba(56, 189, 248, 0.4);
     }
 
-    .owner-text h4 {
-      font-size: 0.65rem;
-      letter-spacing: 1px;
+    .owner-details h4 {
+      font-size: 0.68rem;
+      letter-spacing: 1.2px;
       color: var(--slate-400);
       text-transform: uppercase;
       font-weight: 800;
     }
 
-    .owner-text p {
-      font-size: 0.9rem;
+    .owner-details p {
+      font-size: 0.95rem;
       font-weight: 700;
       color: white;
     }
 
-    .owner-actions {
+    .banner-actions {
       display: flex;
-      gap: 8px;
+      gap: 10px;
     }
 
-    .circle-action-btn {
-      width: 38px;
-      height: 38px;
+    .circle-btn {
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       text-decoration: none;
-      color: white;
-      font-size: 16px;
+      font-size: 18px;
       transition: transform 0.15s;
     }
 
-    .circle-action-btn:hover {
-      transform: scale(1.08);
+    .circle-btn:hover {
+      transform: scale(1.1);
     }
 
-    .circle-action-btn.call {
+    .circle-btn.call {
       background: rgba(255, 255, 255, 0.15);
+      color: white;
     }
 
-    .circle-action-btn.wa {
+    .circle-btn.whatsapp {
       background: var(--whatsapp-green);
+      color: white;
     }
   </style>
 </head>
@@ -543,262 +654,398 @@
         <div class="logo-icon">🖨️</div>
         <div class="logo-title">
           <h1>Customer Print Portal</h1>
-          <p><span class="status-dot"></span> Google Drive Cloud Synced</p>
+          <p><span class="status-dot"></span> Google Drive Linked Hub</p>
         </div>
       </div>
-      <button class="role-switcher" id="roleToggleBtn" onclick="toggleRole()">
-        <span id="roleLabel">Switch to Owner View</span>
-      </button>
+      <div class="view-switcher">
+        <button class="view-btn active" id="btnCustomerMode" onclick="switchMode('customer')">Customer Portal</button>
+        <button class="view-btn" id="btnOwnerMode" onclick="switchMode('owner')">Owner Dashboard</button>
+      </div>
     </div>
   </header>
 
   <!-- Main Container -->
   <main>
-    <!-- Navigation Tabs -->
-    <div class="nav-tabs">
-      <button class="nav-tab active" id="tabUpload" onclick="switchTab('upload')">Upload for Print</button>
-      <button class="nav-tab" id="tabSearch" onclick="switchTab('search')">Search & Download</button>
-      <button class="nav-tab" id="tabOwner" onclick="switchTab('owner')" style="display:none;">Owner Queue</button>
+
+    <!-- ============================================ -->
+    <!-- OWNER VIEW: LOGIN -> CREATE FOLDER -> QR CODE -> QUEUE -->
+    <!-- ============================================ -->
+    <div id="ownerSection" style="display:none;">
+
+      <!-- Step 1: Owner Google Account Login -->
+      <div class="card" id="ownerLoginCard">
+        <div class="card-badge">STEP 1 • OWNER AUTHENTICATION</div>
+        <h2>Sign In with Google Account</h2>
+        <p class="subtext">The shop owner logs in with their Google account to authorize automatic Google Drive folder creation and document management.</p>
+
+        <div class="google-login-box">
+          <div id="unauthArea">
+            <button class="btn-google" onclick="loginWithGoogle()">
+              <!-- Google "G" SVG -->
+              <svg viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+              </svg>
+              <span>Sign in as HARI PRASAD DUNNA (renukahari0503@gmail.com)</span>
+            </button>
+            <p style="font-size:0.75rem; color:var(--slate-500); margin-top:10px;">One-click Google authentication automatically creates your dedicated Drive folder.</p>
+          </div>
+
+          <div id="authArea" style="display:none; text-align:left;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:44px; height:44px; border-radius:50%; background:var(--navy-primary); color:white; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.1rem;">HP</div>
+                <div>
+                  <strong style="color:var(--slate-900); font-size:1rem;">HARI PRASAD DUNNA</strong>
+                  <div style="font-size:0.8rem; color:var(--slate-500);">renukahari0503@gmail.com • Google Drive Connected</div>
+                </div>
+              </div>
+              <button class="btn btn-outline" style="padding:6px 12px; font-size:0.78rem;" onclick="logoutGoogle()">Sign Out</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dedicated Google Drive Folder Created Banner -->
+        <div class="folder-success-box" id="folderNoticeBox">
+          <div class="folder-header">
+            <span class="folder-icon">📁</span>
+            <div class="folder-meta">
+              <strong>Dedicated Google Drive Folder: Customer Print Hub - Hari Prasad Dunna</strong>
+              <span>✓ Auto-created in owner's Google Drive • Linked for customer uploads</span>
+            </div>
+            <a href="https://drive.google.com/drive/folders/1zX9_HariPrasadDunna_PrintHubFolder" target="_blank" class="btn btn-outline" style="padding:8px 12px; font-size:0.8rem; border-color:#86EFAC;">Open in Drive ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Unique QR Code Generation Linked to Owner's Drive Folder -->
+      <div class="card">
+        <div class="card-badge">STEP 2 • GENERATE CUSTOMER QR CODE</div>
+        <h2>Customer Access QR Code</h2>
+        <p class="subtext">Print or display this unique QR code at your shop counter. When customers scan it, documents are uploaded straight into your Google Drive folder and auto-named using their phone/name.</p>
+
+        <div class="qr-container">
+          <div class="qr-frame">
+            <img id="ownerDriveQRImage" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fdrive.google.com%2Fdrive%2Ffolders%2F1zX9_HariPrasadDunna_PrintHubFolder" alt="Owner Google Drive QR Code">
+          </div>
+          <div class="qr-url-badge" id="qrTargetLink">https://drive.google.com/drive/folders/1zX9_HariPrasadDunna_PrintHubFolder</div>
+
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="switchMode('customer')">
+              <span>🚀 Open Customer View</span>
+            </button>
+            <button class="btn btn-wa" onclick="shareQRViaWhatsApp()">
+              <span>💬 WhatsApp QR Link</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Owner Print Orders Queue -->
+      <div class="card">
+        <div class="card-badge">STEP 3 • GOOGLE DRIVE UPLOAD QUEUE</div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <h2>Documents in Owner's Google Drive</h2>
+          <span id="queueCountBadge" style="background:var(--navy-primary); color:white; font-size:0.75rem; font-weight:800; padding:4px 10px; border-radius:12px;">2 Files</span>
+        </div>
+        <div id="ownerQueueList">
+          <!-- Dynamically populated from printJobs -->
+        </div>
+      </div>
+
     </div>
 
-    <!-- Tab 1: Upload View -->
-    <div id="viewUpload">
-      <div class="card">
-        <div class="card-header-badge">1. SELECT DOCUMENT</div>
-        <h2>Upload Document</h2>
-        <p class="subtext">Upload files for high-speed printing, binding, or document editing.</p>
+    <!-- ============================================ -->
+    <!-- CUSTOMER VIEW: ACCESSED VIA SCANNING THE QR -->
+    <!-- ============================================ -->
+    <div id="customerSection">
 
-        <div class="dropzone" onclick="document.getElementById('fileInput').click()">
-          <div class="dropzone-icon">📄</div>
-          <p>Click or drag to select document</p>
-          <span>PDF, Word DOCX, PNG, JPG (Up to 50MB)</span>
-        </div>
-        <input type="file" id="fileInput" class="file-input-hidden" onchange="handleFileSelect(event)">
+      <!-- Customer Sub Tabs -->
+      <div style="display:flex; background:white; border-radius:12px; padding:4px; margin-bottom:20px; border:1px solid var(--slate-200);">
+        <button class="view-btn active" id="tabCustUpload" style="flex:1;" onclick="switchCustTab('upload')">1. Upload Document</button>
+        <button class="view-btn" id="tabCustSearch" style="flex:1;" onclick="switchCustTab('search')">2. Search, Download & WhatsApp</button>
+      </div>
 
-        <div class="selected-file-badge" id="selectedFileBadge">
-          <div>
-            <div id="selectedFileName" style="font-weight:700; font-size:0.9rem; color:var(--navy-primary)">filename.pdf</div>
-            <div id="selectedFileSize" style="font-size:0.75rem; color:var(--slate-400)">0 KB</div>
+      <!-- Upload View -->
+      <div id="custUploadView">
+        <div class="card">
+          <div class="card-badge">STEP 1 • SELECT DOCUMENT FOR PRINT/EDIT</div>
+          <h2>Upload Your Document</h2>
+          <p class="subtext">Upload documents for high-speed printing, editing, or spiral binding directly into <b>Hari Prasad Dunna's</b> Google Drive.</p>
+
+          <div class="dropzone" onclick="document.getElementById('fileInput').click()">
+            <div class="dropzone-icon">📄</div>
+            <p>Click or tap to choose document</p>
+            <span>Supports PDF, Word DOCX, Images, PPTX</span>
           </div>
-          <button style="border:none; background:none; color:var(--navy-blue); font-weight:600; cursor:pointer;" onclick="document.getElementById('fileInput').click()">Change</button>
+          <input type="file" id="fileInput" class="file-input-hidden" onchange="handleFileSelect(event)">
+
+          <div class="file-chosen-box" id="fileChosenBox">
+            <div>
+              <div id="chosenFileName" style="font-weight:700; font-size:0.95rem; color:var(--navy-primary)">document.pdf</div>
+              <div id="chosenFileSize" style="font-size:0.78rem; color:var(--slate-500)">0 KB</div>
+            </div>
+            <button style="border:none; background:none; color:var(--navy-blue); font-weight:700; cursor:pointer;" onclick="document.getElementById('fileInput').click()">Change</button>
+          </div>
+
+          <div style="margin-top: 10px;">
+            <button style="border:1px dashed var(--slate-300); background:none; padding:8px 14px; border-radius:8px; font-size:0.8rem; color:var(--slate-600); cursor:pointer; width:100%" onclick="useSampleDoc()">
+              📎 Quick Test: Click to Use Sample Document
+            </button>
+          </div>
         </div>
 
-        <div style="margin-top: 10px;">
-          <button style="border:1px dashed var(--slate-300); background:none; padding:8px 14px; border-radius:8px; font-size:0.8rem; color:var(--slate-600); cursor:pointer; width:100%" onclick="useSampleDoc()">
-            📎 Or Click to Use Demo Sample Document
+        <div class="card">
+          <div class="card-badge">STEP 2 • CUSTOMER PHONE OR NAME (AUTO-NAMING)</div>
+          <h2>Your Phone Number or Name</h2>
+          <p class="subtext">The uploaded file is automatically saved into the owner's Google Drive named with your phone number or name so you can retrieve it.</p>
+
+          <div class="form-group">
+            <label>Customer Phone Number or Name *</label>
+            <input type="text" id="custIdentifierInput" class="form-input" placeholder="e.g. 9866362137 or Hari Prasad" oninput="updateNamingPreview()">
+          </div>
+
+          <div class="naming-notice" id="namingNotice">
+            <div>Auto-naming rule applied for Google Drive:</div>
+            <strong id="namingPreviewText">9866362137_Document.pdf</strong>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-badge">STEP 3 • PRINT SPECIFICATIONS</div>
+          <h2>Copies & Color Mode</h2>
+
+          <div class="form-group">
+            <label>Number of Copies</label>
+            <div class="copies-stepper">
+              <button class="stepper-btn" onclick="modifyCopies(-1)">-</button>
+              <div class="copies-num" id="copiesDisplay">1</div>
+              <button class="stepper-btn add" onclick="modifyCopies(1)">+</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Color Mode</label>
+            <div class="pref-grid">
+              <div class="pref-pill selected" id="pillBW" onclick="setMode('Black & White', 2)">Black & White (₹2/pg)</div>
+              <div class="pref-pill" id="pillColor" onclick="setMode('Color', 10)">Full Color (₹10/pg)</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Paper Size</label>
+            <div class="pref-grid">
+              <div class="pref-pill selected" id="pillA4" onclick="setSize('A4')">A4 Standard</div>
+              <div class="pref-pill" id="pillA3" onclick="setSize('A3')">A3 Large</div>
+              <div class="pref-pill" id="pillLegal" onclick="setSize('Legal')">Legal</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Special Instructions / Notes (Optional)</label>
+            <input type="text" id="specialNotesInput" class="form-input" placeholder="e.g. Spiral binding, page 1-3 only">
+          </div>
+
+          <button class="btn btn-primary" style="width:100%; margin-top:20px; padding:16px; font-size:1rem;" onclick="submitCustomerJob()">
+            <span>Save to Google Drive & Queue Print</span>
+            <span id="estTotalBadge">(₹2)</span>
           </button>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-header-badge">2. CUSTOMER IDENTIFICATION</div>
-        <h2>Phone Number or Name</h2>
-        <p class="subtext">The uploaded file is automatically named using your phone number or name for security and easy retrieval.</p>
+      <!-- Search & Download View -->
+      <div id="custSearchView" style="display:none;">
+        <div class="card">
+          <div class="card-badge">DOCUMENT LOOKUP</div>
+          <h2>Search Your Documents</h2>
+          <p class="subtext">Enter your phone number or name to display your uploaded documents, download them, or send directly to WhatsApp.</p>
 
-        <div class="form-group">
-          <label>Your Phone Number or Full Name *</label>
-          <input type="text" id="customerIdInput" class="form-input" placeholder="e.g. 9866362137 or Hari Prasad" oninput="updateAutoNamingPreview()">
-        </div>
-
-        <div class="naming-preview" id="namingPreview">
-          <div>Auto-naming convention applied:</div>
-          <strong id="previewFileName">9866362137_Document.pdf</strong>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header-badge">3. PRINT PREFERENCES</div>
-        <h2>Copies & Options</h2>
-
-        <div class="form-group">
-          <label>Number of Copies</label>
-          <div class="copies-stepper">
-            <button class="step-btn" onclick="changeCopies(-1)">-</button>
-            <div class="copies-count" id="copiesDisplay">1</div>
-            <button class="step-btn add" onclick="changeCopies(1)">+</button>
+          <div class="form-group">
+            <input type="text" id="custSearchInput" class="form-input" placeholder="Enter your Phone Number or Name to search..." oninput="searchCustomerDocs()">
           </div>
         </div>
 
-        <div class="form-group">
-          <label>Color Mode</label>
-          <div class="options-grid">
-            <div class="option-btn selected" id="optBW" onclick="setColorMode('Black & White', 2)">Black & White (₹2/pg)</div>
-            <div class="option-btn" id="optColor" onclick="setColorMode('Color', 10)">Full Color (₹10/pg)</div>
-          </div>
+        <div id="customerDocsResults">
+          <!-- Dynamically populated -->
         </div>
-
-        <div class="form-group">
-          <label>Paper Size</label>
-          <div class="options-grid">
-            <div class="option-btn selected" id="optA4" onclick="setPaperSize('A4')">A4 Standard</div>
-            <div class="option-btn" id="optA3" onclick="setPaperSize('A3')">A3 Large</div>
-            <div class="option-btn" id="optLegal" onclick="setPaperSize('Legal')">Legal</div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Special Instructions / Notes (Optional)</label>
-          <input type="text" id="notesInput" class="form-input" placeholder="e.g. Print pages 1-5 only, back to back, spiral binding">
-        </div>
-
-        <button class="btn-submit" onclick="submitPrintJob()">
-          <span>Submit Print Job</span>
-          <span id="priceBadge">(₹2)</span>
-        </button>
       </div>
+
     </div>
 
-    <!-- Tab 2: Search & Download View -->
-    <div id="viewSearch" style="display:none;">
-      <div class="card">
-        <div class="card-header-badge">DOCUMENT SEARCH</div>
-        <h2>Search & Download Documents</h2>
-        <p class="subtext">Enter your phone number or name to search, download, or share your files via WhatsApp.</p>
-
-        <div class="form-group">
-          <input type="text" id="searchInput" class="form-input" placeholder="Enter Phone Number or Name..." oninput="filterDocuments()">
-        </div>
-      </div>
-
-      <div id="documentsList">
-        <!-- Rendered dynamically -->
-      </div>
-    </div>
-
-    <!-- Tab 3: Owner Dashboard View (When owner mode is toggled) -->
-    <div id="viewOwner" style="display:none;">
-      <div class="card">
-        <div class="card-header-badge">SHOP OWNER HUB</div>
-        <h2>Live Print Orders Queue</h2>
-        <p class="subtext">Manage incoming prints, Google Drive backups, and send WhatsApp alerts to customers.</p>
-        <div id="ownerQueueList">
-          <!-- Rendered dynamically -->
-        </div>
-      </div>
-    </div>
   </main>
 
   <!-- Sticky Bottom App Owner Banner (Requested) -->
   <div class="owner-bottom-banner">
-    <div class="owner-banner-content">
-      <div class="owner-info">
-        <div class="owner-avatar">HP</div>
-        <div class="owner-text">
+    <div class="owner-banner-inner">
+      <div class="owner-profile">
+        <div class="owner-circle">HP</div>
+        <div class="owner-details">
           <h4>App Owner</h4>
           <p>HARI PRASAD DUNNA | +91 9866362137</p>
         </div>
       </div>
-      <div class="owner-actions">
-        <a href="tel:+919866362137" class="circle-action-btn call" title="Call Hari Prasad">📞</a>
-        <a href="https://api.whatsapp.com/send?phone=919866362137&text=Hello%20Hari%20Prasad%2C%20I%20have%20an%20inquiry%20regarding%20Customer%20Print%20Portal" target="_blank" class="circle-action-btn wa" title="WhatsApp Hari Prasad">💬</a>
+      <div class="banner-actions">
+        <a href="tel:+919866362137" class="circle-btn call" title="Call Hari Prasad Dunna">📞</a>
+        <a href="https://api.whatsapp.com/send?phone=919866362137&text=Hello%20Hari%20Prasad%2C%20I%20have%20an%20inquiry%20regarding%20Customer%20Print%20Portal" target="_blank" class="circle-btn whatsapp" title="Chat on WhatsApp">💬</a>
       </div>
     </div>
   </div>
 
   <script>
-    // State Store
+    // State
     let selectedFile = null;
     let copies = 1;
     let colorMode = 'Black & White';
     let ratePerPage = 2;
     let paperSize = 'A4';
-    let currentRole = 'customer';
+    let activeMode = 'customer'; // 'customer' or 'owner'
+    let isOwnerLoggedIn = true;
 
-    // Demo Initial Data
+    const ownerName = "HARI PRASAD DUNNA";
+    const ownerPhone = "+91 9866362137";
+    const driveFolder = "Customer Print Hub - Hari Prasad Dunna";
+    const driveFolderUrl = "https://drive.google.com/drive/folders/1zX9_HariPrasadDunna_PrintHubFolder";
+
+    // Initial documents in the owner's Google Drive folder
     let printJobs = [
       {
-        id: 1,
-        customerIdentifier: '9848022338',
-        customerName: 'Ravi Kumar',
-        originalName: 'Project_Report.pdf',
-        storedName: '9848022338_Project_Report.pdf',
-        size: '2.4 MB',
+        id: 101,
+        senderIdentifier: '9848022338',
+        senderName: 'Ravi Kumar',
+        originalFileName: 'College_Project_Final.pdf',
+        storedDriveFileName: '9848022338_College_Project_Final.pdf',
+        size: '1.8 MB',
         copies: 2,
         colorMode: 'Black & White',
         paperSize: 'A4',
         cost: 4,
-        date: 'Today, 10:15 AM',
-        status: 'Ready'
+        date: 'Today, 10:30 AM',
+        status: 'Ready',
+        driveFileUrl: 'https://drive.google.com/file/d/demo_101/view'
       },
       {
-        id: 2,
-        customerIdentifier: '9866362137',
-        customerName: 'Hari Prasad',
-        originalName: 'Invoice_Sample.pdf',
-        storedName: '9866362137_Invoice_Sample.pdf',
-        size: '420 KB',
+        id: 102,
+        senderIdentifier: '9866362137',
+        senderName: 'Hari Prasad',
+        originalFileName: 'Shop_Licence.pdf',
+        storedDriveFileName: '9866362137_Shop_Licence.pdf',
+        size: '480 KB',
         copies: 1,
         colorMode: 'Color',
         paperSize: 'A4',
         cost: 10,
-        date: 'Today, 11:30 AM',
-        status: 'Pending'
+        date: 'Today, 11:15 AM',
+        status: 'Pending',
+        driveFileUrl: 'https://drive.google.com/file/d/demo_102/view'
       }
     ];
+
+    function switchMode(mode) {
+      activeMode = mode;
+      document.getElementById('btnCustomerMode').classList.toggle('active', mode === 'customer');
+      document.getElementById('btnOwnerMode').classList.toggle('active', mode === 'owner');
+
+      document.getElementById('customerSection').style.display = mode === 'customer' ? 'block' : 'none';
+      document.getElementById('ownerSection').style.display = mode === 'owner' ? 'block' : 'none';
+
+      if (mode === 'owner') {
+        renderOwnerQueue();
+      } else {
+        searchCustomerDocs();
+      }
+    }
+
+    function switchCustTab(tab) {
+      document.getElementById('tabCustUpload').classList.toggle('active', tab === 'upload');
+      document.getElementById('tabCustSearch').classList.toggle('active', tab === 'search');
+
+      document.getElementById('custUploadView').style.display = tab === 'upload' ? 'block' : 'none';
+      document.getElementById('custSearchView').style.display = tab === 'search' ? 'block' : 'none';
+
+      if (tab === 'search') searchCustomerDocs();
+    }
+
+    // Google Login simulation
+    function loginWithGoogle() {
+      isOwnerLoggedIn = true;
+      document.getElementById('unauthArea').style.display = 'none';
+      document.getElementById('authArea').style.display = 'block';
+      document.getElementById('folderNoticeBox').style.display = 'flex';
+      alert(`Google Account Connected as ${ownerName}!\nDedicated Google Drive folder '${driveFolder}' created successfully.`);
+    }
+
+    function logoutGoogle() {
+      isOwnerLoggedIn = false;
+      document.getElementById('unauthArea').style.display = 'block';
+      document.getElementById('authArea').style.display = 'none';
+    }
 
     function handleFileSelect(e) {
       if (e.target.files && e.target.files[0]) {
         selectedFile = e.target.files[0];
-        document.getElementById('selectedFileName').innerText = selectedFile.name;
-        document.getElementById('selectedFileSize').innerText = (selectedFile.size / 1024).toFixed(1) + ' KB';
-        document.getElementById('selectedFileBadge').classList.add('visible');
-        updateAutoNamingPreview();
+        document.getElementById('chosenFileName').innerText = selectedFile.name;
+        document.getElementById('chosenFileSize').innerText = (selectedFile.size / 1024).toFixed(1) + ' KB';
+        document.getElementById('fileChosenBox').classList.add('visible');
+        updateNamingPreview();
       }
     }
 
     function useSampleDoc() {
       selectedFile = {
-        name: 'Government_ID_Form.pdf',
-        size: 345000
+        name: 'Identity_Proof_Card.pdf',
+        size: 420000
       };
-      document.getElementById('selectedFileName').innerText = selectedFile.name;
-      document.getElementById('selectedFileSize').innerText = '345 KB (Demo File)';
-      document.getElementById('selectedFileBadge').classList.add('visible');
-      updateAutoNamingPreview();
+      document.getElementById('chosenFileName').innerText = selectedFile.name;
+      document.getElementById('chosenFileSize').innerText = '420 KB (Sample File)';
+      document.getElementById('fileChosenBox').classList.add('visible');
+      updateNamingPreview();
     }
 
-    function updateAutoNamingPreview() {
-      const id = document.getElementById('customerIdInput').value.trim();
-      const preview = document.getElementById('namingPreview');
-      const previewName = document.getElementById('previewFileName');
+    function updateNamingPreview() {
+      const id = document.getElementById('custIdentifierInput').value.trim();
+      const notice = document.getElementById('namingNotice');
+      const previewText = document.getElementById('namingPreviewText');
       if (id.length > 0) {
         const ext = selectedFile ? selectedFile.name.split('.').pop() : 'pdf';
         const cleanId = id.replace(/[^a-zA-Z0-9_+]/g, '_');
-        previewName.innerText = `${cleanId}_${new Date().toISOString().slice(5,10).replace('-','')}.${ext}`;
-        preview.classList.add('visible');
+        previewText.innerText = `${cleanId}_${new Date().toISOString().slice(5,10).replace('-','')}.${ext}`;
+        notice.classList.add('visible');
       } else {
-        preview.classList.remove('visible');
+        notice.classList.remove('visible');
       }
     }
 
-    function changeCopies(delta) {
+    function modifyCopies(delta) {
       copies = Math.max(1, copies + delta);
       document.getElementById('copiesDisplay').innerText = copies;
-      updateCost();
+      updateTotal();
     }
 
-    function setColorMode(mode, rate) {
+    function setMode(mode, rate) {
       colorMode = mode;
       ratePerPage = rate;
-      document.getElementById('optBW').classList.toggle('selected', mode === 'Black & White');
-      document.getElementById('optColor').classList.toggle('selected', mode === 'Color');
-      updateCost();
+      document.getElementById('pillBW').classList.toggle('selected', mode === 'Black & White');
+      document.getElementById('pillColor').classList.toggle('selected', mode === 'Color');
+      updateTotal();
     }
 
-    function setPaperSize(size) {
+    function setSize(size) {
       paperSize = size;
       ['A4', 'A3', 'Legal'].forEach(s => {
-        document.getElementById('opt' + s).classList.toggle('selected', s === size);
+        document.getElementById('pill' + s).classList.toggle('selected', s === size);
       });
     }
 
-    function updateCost() {
+    function updateTotal() {
       const total = ratePerPage * copies;
-      document.getElementById('priceBadge').innerText = `(₹${total})`;
+      document.getElementById('estTotalBadge').innerText = `(₹${total})`;
     }
 
-    function submitPrintJob() {
-      const identifier = document.getElementById('customerIdInput').value.trim();
+    // Customer Submits File -> Saves with name/phone directly to Owner's Drive
+    function submitCustomerJob() {
+      const identifier = document.getElementById('custIdentifierInput').value.trim();
       if (!identifier) {
         alert('Please enter your Phone Number or Name.');
         return;
@@ -807,88 +1054,77 @@
       const origName = selectedFile ? selectedFile.name : 'Document.pdf';
       const ext = origName.split('.').pop();
       const cleanId = identifier.replace(/[^a-zA-Z0-9_+]/g, '_');
-      const targetName = `${cleanId}_${Date.now().toString().slice(-4)}.${ext}`;
+      const targetDriveName = `${cleanId}_${Date.now().toString().slice(-4)}.${ext}`;
 
       const newJob = {
         id: Date.now(),
-        customerIdentifier: identifier,
-        customerName: identifier,
-        originalName: origName,
-        storedName: targetName,
-        size: selectedFile ? (selectedFile.size / 1024).toFixed(0) + ' KB' : '500 KB',
+        senderIdentifier: identifier,
+        senderName: identifier,
+        originalFileName: origName,
+        storedDriveFileName: targetDriveName,
+        size: selectedFile ? (selectedFile.size / 1024).toFixed(0) + ' KB' : '450 KB',
         copies: copies,
         colorMode: colorMode,
         paperSize: paperSize,
         cost: ratePerPage * copies,
         date: 'Just now',
-        status: 'Pending'
+        status: 'Pending',
+        driveFileUrl: `https://drive.google.com/file/d/drive_${Date.now()}/view`
       };
 
       printJobs.unshift(newJob);
-      alert(`Success! File uploaded & saved as:\n${targetName}\nSynced with Google Drive (Customer Print Hub).`);
 
-      // Reset
-      document.getElementById('customerIdInput').value = '';
-      document.getElementById('selectedFileBadge').classList.remove('visible');
-      document.getElementById('namingPreview').classList.remove('visible');
+      alert(`Success!\nDocument saved to Google Drive (${driveFolder}) as:\n${targetDriveName}\n\nYou can now search, download, or share this on WhatsApp.`);
+
+      // Reset Form & Switch to Search
+      document.getElementById('custIdentifierInput').value = '';
+      document.getElementById('fileChosenBox').classList.remove('visible');
+      document.getElementById('namingNotice').classList.remove('visible');
       selectedFile = null;
 
-      // Switch to search view and prefill
-      switchTab('search');
-      document.getElementById('searchInput').value = identifier;
-      filterDocuments();
+      switchCustTab('search');
+      document.getElementById('custSearchInput').value = identifier;
+      searchCustomerDocs();
     }
 
-    function switchTab(tab) {
-      document.getElementById('tabUpload').classList.toggle('active', tab === 'upload');
-      document.getElementById('tabSearch').classList.toggle('active', tab === 'search');
-      if (document.getElementById('tabOwner')) {
-        document.getElementById('tabOwner').classList.toggle('active', tab === 'owner');
-      }
+    // Customer searches by Name or Phone
+    function searchCustomerDocs() {
+      const query = document.getElementById('custSearchInput').value.trim().toLowerCase();
+      const container = document.getElementById('customerDocsResults');
 
-      document.getElementById('viewUpload').style.display = tab === 'upload' ? 'block' : 'none';
-      document.getElementById('viewSearch').style.display = tab === 'search' ? 'block' : 'none';
-      document.getElementById('viewOwner').style.display = tab === 'owner' ? 'block' : 'none';
-
-      if (tab === 'search') filterDocuments();
-      if (tab === 'owner') renderOwnerQueue();
-    }
-
-    function filterDocuments() {
-      const query = document.getElementById('searchInput').value.trim().toLowerCase();
-      const listEl = document.getElementById('documentsList');
-      const matched = printJobs.filter(j => 
-        j.customerIdentifier.toLowerCase().includes(query) ||
-        j.storedName.toLowerCase().includes(query) ||
-        j.originalName.toLowerCase().includes(query)
+      const matches = printJobs.filter(j => 
+        j.senderIdentifier.toLowerCase().includes(query) ||
+        j.storedDriveFileName.toLowerCase().includes(query) ||
+        j.originalFileName.toLowerCase().includes(query)
       );
 
-      if (matched.length === 0) {
-        listEl.innerHTML = `
-          <div class="card" style="text-align:center; padding:30px;">
-            <div style="font-size:32px; color:var(--slate-400); margin-bottom:8px;">🔍</div>
+      if (matches.length === 0) {
+        container.innerHTML = `
+          <div class="card" style="text-align:center; padding:32px;">
+            <div style="font-size:36px; margin-bottom:8px;">🔍</div>
             <h3>No documents found</h3>
-            <p style="font-size:0.85rem; color:var(--slate-600); margin-top:4px;">Try searching with the exact phone number or name used during upload.</p>
+            <p style="font-size:0.85rem; color:var(--slate-500); margin-top:4px;">Enter your phone number or name above to see your uploaded documents from the owner's Google Drive.</p>
           </div>
         `;
         return;
       }
 
-      listEl.innerHTML = matched.map(doc => `
+      container.innerHTML = matches.map(doc => `
         <div class="doc-item">
           <div class="doc-item-header">
             <div>
-              <div class="doc-name">${doc.storedName}</div>
-              <div class="doc-meta">${doc.date} • ${doc.size} • ₹${doc.cost} (${doc.copies} copy, ${doc.colorMode})</div>
+              <div class="doc-item-title">${doc.storedDriveFileName}</div>
+              <div class="doc-item-meta">${doc.date} • ${doc.size} • ₹${doc.cost} (${doc.copies} copy, ${doc.colorMode}, ${doc.paperSize})</div>
+              <div style="font-size:0.75rem; color:var(--emerald-success); margin-top:2px;">📁 Saved in Google Drive: ${driveFolder}</div>
             </div>
-            <div class="status-pill ${doc.status.toLowerCase()}">${doc.status}</div>
+            <div class="status-badge ${doc.status.toLowerCase()}">${doc.status}</div>
           </div>
-          <div class="doc-actions">
-            <button class="btn-action" onclick="downloadDoc('${doc.storedName}')">
-              ⬇️ Download
+          <div class="doc-actions-row">
+            <button class="btn btn-outline" style="font-size:0.85rem;" onclick="downloadDoc('${doc.storedDriveFileName}')">
+              ⬇️ Download Document
             </button>
-            <button class="btn-action whatsapp" onclick="shareWhatsApp('${doc.storedName}', '${doc.customerIdentifier}')">
-              💬 WhatsApp Share
+            <button class="btn btn-wa" style="font-size:0.85rem;" onclick="sendToMyWhatsApp('${doc.senderIdentifier}', '${doc.storedDriveFileName}', '${doc.cost}')">
+              💬 Send to My WhatsApp
             </button>
           </div>
         </div>
@@ -896,70 +1132,74 @@
     }
 
     function renderOwnerQueue() {
-      const listEl = document.getElementById('ownerQueueList');
-      listEl.innerHTML = printJobs.map(doc => `
+      const queueList = document.getElementById('ownerQueueList');
+      document.getElementById('queueCountBadge').innerText = `${printJobs.length} Files`;
+
+      queueList.innerHTML = printJobs.map(doc => `
         <div class="doc-item">
           <div class="doc-item-header">
             <div>
-              <div class="doc-name">${doc.storedName}</div>
-              <div class="doc-meta">Customer: <b>${doc.customerIdentifier}</b> • ${doc.copies} copies • ${doc.colorMode} (₹${doc.cost})</div>
+              <div class="doc-item-title">${doc.storedDriveFileName}</div>
+              <div class="doc-item-meta">Customer: <b>${doc.senderIdentifier}</b> • ${doc.copies} copies • ${doc.colorMode} (₹${doc.cost})</div>
+              <div style="font-size:0.75rem; color:var(--emerald-success); margin-top:2px;">📁 Google Drive ID: drive_folder_file_${doc.id}</div>
             </div>
-            <select onchange="updateDocStatus(${doc.id}, this.value)" style="padding:4px 8px; border-radius:6px; font-weight:700;">
+            <select onchange="changeDocStatus(${doc.id}, this.value)" style="padding:4px 8px; border-radius:6px; font-weight:700;">
               <option value="Pending" ${doc.status === 'Pending' ? 'selected' : ''}>Pending</option>
               <option value="Printing" ${doc.status === 'Printing' ? 'selected' : ''}>Printing</option>
-              <option value="Ready" ${doc.status === 'Ready' ? 'selected' : ''}>Ready</option>
+              <option value="Ready" ${doc.status === 'Ready' ? 'selected' : ''}>Ready for Pickup</option>
             </select>
           </div>
-          <div class="doc-actions">
-            <button class="btn-action" onclick="downloadDoc('${doc.storedName}')">⬇️ Save File</button>
-            <button class="btn-action whatsapp" onclick="notifyCustomer('${doc.customerIdentifier}', '${doc.storedName}')">📲 Send WhatsApp Ready Alert</button>
+          <div class="doc-actions-row">
+            <button class="btn btn-outline" style="font-size:0.85rem;" onclick="downloadDoc('${doc.storedDriveFileName}')">⬇️ Save Local</button>
+            <button class="btn btn-wa" style="font-size:0.85rem;" onclick="notifyCustomerWA('${doc.senderIdentifier}', '${doc.storedDriveFileName}', '${doc.cost}')">📲 Notify Customer via WhatsApp</button>
           </div>
         </div>
       `).join('');
     }
 
-    function updateDocStatus(id, newStatus) {
+    function changeDocStatus(id, newStatus) {
       const doc = printJobs.find(j => j.id === id);
       if (doc) doc.status = newStatus;
       renderOwnerQueue();
     }
 
-    function downloadDoc(name) {
-      const blob = new Blob([`Customer Print Portal Document: ${name}\nOwner: HARI PRASAD DUNNA (+91 9866362137)`], { type: 'text/plain' });
+    function downloadDoc(fileName) {
+      const blob = new Blob([`Customer Print Portal Document: ${fileName}\nOwner: HARI PRASAD DUNNA (+91 9866362137)\nGoogle Drive Folder: ${driveFolder}`], { type: 'text/plain' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = name;
+      a.download = fileName;
       a.click();
     }
 
-    function shareWhatsApp(name, phone) {
-      const msg = encodeURIComponent(`Customer Print Portal Document: ${name} (Customer: ${phone}). Print shop owner: Hari Prasad Dunna (+91 9866362137).`);
-      window.open(`https://api.whatsapp.com/send?text=${msg}`, '_blank');
-    }
-
-    function notifyCustomer(phone, name) {
-      const cleanPhone = phone.replace(/[^0-9]/g, '');
-      const msg = encodeURIComponent(`Hello! Your print order '${name}' is READY for pickup at Hari Prasad Digital Print Hub (+91 9866362137). Thank you!`);
-      window.open(`https://api.whatsapp.com/send?phone=${cleanPhone}&text=${msg}`, '_blank');
-    }
-
-    function toggleRole() {
-      if (currentRole === 'customer') {
-        currentRole = 'owner';
-        document.getElementById('roleLabel').innerText = 'Switch to Customer View';
-        document.getElementById('tabOwner').style.display = 'block';
-        switchTab('owner');
-      } else {
-        currentRole = 'customer';
-        document.getElementById('roleLabel').innerText = 'Switch to Owner View';
-        document.getElementById('tabOwner').style.display = 'none';
-        switchTab('upload');
+    // Customer sends to their own WhatsApp
+    function sendToMyWhatsApp(phoneOrName, fileName, cost) {
+      let cleanPhone = phoneOrName.replace(/[^0-9]/g, '');
+      if (!cleanPhone) {
+        cleanPhone = prompt('Please enter your WhatsApp mobile number (with country code, e.g. 919866362137):', '919866362137');
+      }
+      if (cleanPhone) {
+        cleanPhone = cleanPhone.replace(/[^0-9]/g, '');
+        const text = encodeURIComponent(`*Customer Print Portal*\n📄 Document: ${fileName}\n💰 Print Cost: ₹${cost}\n📁 Saved in Google Drive: ${driveFolder}\nShop Owner: ${ownerName} (${ownerPhone})`);
+        window.open(`https://api.whatsapp.com/send?phone=${cleanPhone}&text=${text}`, '_blank');
       }
     }
 
-    // Initial render
-    filterDocuments();
+    // Owner notifies customer
+    function notifyCustomerWA(customerPhone, fileName, cost) {
+      const cleanPhone = customerPhone.replace(/[^0-9]/g, '');
+      const text = encodeURIComponent(`Hello! Your print order *${fileName}* is ready at *Hari Prasad Digital Print Hub*.\nTotal: ₹${cost}.\nThank you! - Hari Prasad Dunna (+91 9866362137)`);
+      window.open(`https://api.whatsapp.com/send?phone=${cleanPhone}&text=${text}`, '_blank');
+    }
+
+    function shareQRViaWhatsApp() {
+      const text = encodeURIComponent(`*Customer Print Portal - QR Code Access*\nScan this link to upload your documents straight to Hari Prasad Dunna's Google Drive for printing: ${driveFolderUrl}`);
+      window.open(`https://api.whatsapp.com/send?phone=919866362137&text=${text}`, '_blank');
+    }
+
+    // Initialize
+    loginWithGoogle();
+    searchCustomerDocs();
   </script>
 </body>
 </html>

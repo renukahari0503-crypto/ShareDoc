@@ -1,6 +1,12 @@
 package com.example.ui.screens
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -28,10 +34,15 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.CloudDone
 import androidx.compose.material.icons.filled.CloudSync
+import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Download
+import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.filled.HourglassEmpty
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.Launch
 import androidx.compose.material.icons.filled.OpenInBrowser
 import androidx.compose.material.icons.filled.Print
 import androidx.compose.material.icons.filled.QrCode
@@ -164,6 +175,8 @@ fun OwnerDashboardScreen(
                 OwnerQueueContent(
                     documents = documents,
                     statusFilter = statusFilter,
+                    driveFolderUrl = driveSyncState.folderUrl,
+                    driveFolderName = driveSyncState.folderName,
                     onStatusFilterChange = { viewModel.setStatusFilter(it) },
                     onUpdateStatus = { doc, status -> viewModel.updatePrintStatus(doc, status) },
                     onDownload = { viewModel.downloadDocument(it) },
@@ -177,6 +190,7 @@ fun OwnerDashboardScreen(
                 OwnerQRCodeContent(
                     ownerConfig = ownerConfig,
                     driveFolderUrl = driveSyncState.folderUrl,
+                    driveFolderName = driveSyncState.folderName,
                     onTestCustomerFlow = { viewModel.setRole(UserRole.CUSTOMER) }
                 )
             }
@@ -199,6 +213,8 @@ fun OwnerDashboardScreen(
 private fun OwnerQueueContent(
     documents: List<PrintDocument>,
     statusFilter: String,
+    driveFolderUrl: String,
+    driveFolderName: String,
     onStatusFilterChange: (String) -> Unit,
     onUpdateStatus: (PrintDocument, String) -> Unit,
     onDownload: (PrintDocument) -> Unit,
@@ -250,6 +266,14 @@ private fun OwnerQueueContent(
                     modifier = Modifier.weight(1.2f)
                 )
             }
+        }
+
+        // New Section: Shop Owner's Google Drive Folder QR Code
+        item {
+            OwnerDriveFolderQRSection(
+                folderUrl = driveFolderUrl,
+                folderName = driveFolderName
+            )
         }
 
         item {
@@ -626,6 +650,219 @@ private fun PrintJobCard(
 }
 
 @Composable
+fun OwnerDriveFolderQRSection(
+    folderUrl: String,
+    folderName: String,
+    modifier: Modifier = Modifier
+) {
+    val context = LocalContext.current
+    var isExpanded by remember { mutableStateOf(true) }
+    var qrBitmap by remember(folderUrl) {
+        mutableStateOf<Bitmap?>(null)
+    }
+
+    LaunchedEffect(folderUrl) {
+        qrBitmap = QRCodeGenerator.generateQRCode(folderUrl, 500, 500)
+    }
+
+    Card(
+        modifier = modifier
+            .fillMaxWidth()
+            .testTag("owner_drive_folder_qr_section"),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        shape = RoundedCornerShape(16.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { isExpanded = !isExpanded },
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Box(
+                        modifier = Modifier
+                            .size(38.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .background(NavyPrimary.copy(alpha = 0.1f)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Folder,
+                            contentDescription = null,
+                            tint = NavyPrimary,
+                            modifier = Modifier.size(22.dp)
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Column {
+                        Text(
+                            text = "GOOGLE DRIVE SYNC QR",
+                            fontSize = 10.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Slate400,
+                            letterSpacing = 1.sp
+                        )
+                        Text(
+                            text = "Shop Owner Drive Folder QR",
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Slate900
+                        )
+                    }
+                }
+
+                IconButton(onClick = { isExpanded = !isExpanded }) {
+                    Icon(
+                        imageVector = if (isExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                        contentDescription = "Toggle Section",
+                        tint = Slate600
+                    )
+                }
+            }
+
+            AnimatedVisibility(visible = isExpanded) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 12.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Scan this unique QR code with your phone or PC camera to directly open the shop owner's Google Drive folder where all customer documents are uploaded.",
+                        fontSize = 12.sp,
+                        color = Slate600,
+                        textAlign = TextAlign.Center
+                    )
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    // QR Image
+                    Box(
+                        modifier = Modifier
+                            .size(190.dp)
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(Color.White)
+                            .border(1.5.dp, Slate200, RoundedCornerShape(12.dp))
+                            .padding(10.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        if (qrBitmap != null) {
+                            Image(
+                                bitmap = qrBitmap!!.asImageBitmap(),
+                                contentDescription = "Shop Owner Google Drive Folder QR Code",
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        } else {
+                            CircularProgressIndicator(color = NavyPrimary)
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    // Folder info strip
+                    Surface(
+                        color = Slate100,
+                        shape = RoundedCornerShape(8.dp),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 12.dp, vertical = 8.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text(
+                                    text = "Drive Folder:",
+                                    fontSize = 10.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Slate400
+                                )
+                                Text(
+                                    text = folderName,
+                                    fontSize = 12.sp,
+                                    fontWeight = FontWeight.SemiBold,
+                                    color = NavyPrimary,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis
+                                )
+                            }
+                            IconButton(
+                                onClick = {
+                                    val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                                    clipboard.setPrimaryClip(ClipData.newPlainText("Drive Folder URL", folderUrl))
+                                    Toast.makeText(context, "Drive URL copied", Toast.LENGTH_SHORT).show()
+                                },
+                                modifier = Modifier.size(32.dp)
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.ContentCopy,
+                                    contentDescription = "Copy URL",
+                                    tint = Slate600,
+                                    modifier = Modifier.size(16.dp)
+                                )
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    // Actions
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Button(
+                            onClick = {
+                                try {
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(folderUrl))
+                                    context.startActivity(intent)
+                                } catch (e: Exception) {
+                                    Toast.makeText(context, "Could not open browser", Toast.LENGTH_SHORT).show()
+                                }
+                            },
+                            colors = ButtonDefaults.buttonColors(containerColor = NavyPrimary),
+                            modifier = Modifier
+                                .weight(1f)
+                                .testTag("open_owner_drive_qr_button")
+                        ) {
+                            Icon(Icons.Default.Launch, contentDescription = null, modifier = Modifier.size(16.dp))
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Text("Open in Drive", fontSize = 12.sp)
+                        }
+
+                        OutlinedButton(
+                            onClick = {
+                                WhatsAppHelper.openWhatsAppChat(
+                                    context,
+                                    "+919866362137",
+                                    "Google Drive Folder for customer prints: $folderUrl"
+                                )
+                            },
+                            modifier = Modifier
+                                .weight(1f)
+                                .testTag("share_owner_drive_qr_button")
+                        ) {
+                            Icon(Icons.Default.Share, contentDescription = null, modifier = Modifier.size(16.dp))
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Text("Share Link", fontSize = 12.sp)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
 private fun SpecificationPill(label: String) {
     Surface(
         color = Slate200,
@@ -645,6 +882,7 @@ private fun SpecificationPill(label: String) {
 private fun OwnerQRCodeContent(
     ownerConfig: com.example.data.model.ShopOwnerConfig,
     driveFolderUrl: String,
+    driveFolderName: String,
     onTestCustomerFlow: () -> Unit
 ) {
     val context = LocalContext.current
@@ -662,6 +900,14 @@ private fun OwnerQRCodeContent(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
+        // Section: Unique Google Drive Folder QR
+        item {
+            OwnerDriveFolderQRSection(
+                folderUrl = driveFolderUrl,
+                folderName = driveFolderName
+            )
+        }
+
         item {
             Card(
                 modifier = Modifier
